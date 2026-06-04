@@ -605,6 +605,8 @@ BASE_TEMPLATE = """
                 <a href="{{ url_for('terms_page') }}" class="hover:text-orange-250 mx-1">📜 Terms</a>
                 |
                 <a href="{{ url_for('rules_page') }}" class="hover:text-yellow-250 mx-2">⚠️ Rules</a>
+                |
+                <a href="{{ url_for('developer_page') }}" class="hover:text-green-600 mx-2">👨‍💻 Developer</a>
             </p>
             <p class="mt-2">© 2026 NEXISS. All rights reserved.</p>
         </footer>
@@ -1431,6 +1433,133 @@ def about_page():
     if current_user.is_authenticated:
         unread_count = Notification.query.filter_by(user_id=current_user.id, read=False).count()
     template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', ABOUT_US_HTML)
+    return render_template_string(template, unread_count=unread_count)
+
+# ========== DEVELOPER & PARTNERSHIP PAGE ==========
+DEVELOPER_HTML = '''
+<div class="max-w-5xl mx-auto">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-2xl shadow-xl p-8 text-white mb-8">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+            <img src="https://via.placeholder.com/120?text=Mr.Nex" alt="Mr. Nex" class="rounded-full border-4 border-white w-32 h-32 object-cover">
+            <div>
+                <h1 class="text-3xl font-bold">Brian Ondieki (Mr. Nex)</h1>
+                <p class="text-xl opacity-90">Founder & Lead Developer | AI Systems Engineer</p>
+                <p class="mt-2">Building AI-powered educational & communication solutions for Africa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Developer Story & Inspiration -->
+    <div class="bg-white rounded-xl shadow p-8 mb-8">
+        <h2 class="text-2xl font-bold text-green-700 mb-4">👨‍💻 Developer Story & Inspiration</h2>
+        <p class="mb-4"><strong>💡 Why This App Was Created</strong><br>
+        This application was created after identifying a major gap in how students, businesses, and individuals communicate and access digital support. Many people struggle with slow response times, lack of affordable digital assistants, difficulty accessing educational help, and inefficient communication systems.</p>
+        <p class="mb-4"><strong>🚀 The Problem That Inspired the App</strong><br>
+        Before this system, users faced delayed replies, repeated manual answering of questions, lack of automation tools, limited access to AI in Africa, and students struggling to get instant academic or career help.</p>
+        <p class="mb-4"><strong>🧠 The Idea Behind the System</strong><br>
+        “A personal assistant inside WhatsApp that never sleeps.” The system responds instantly, automates communication, helps businesses manage customers, provides learning support, and works 24/7.</p>
+        <p class="mb-4"><strong>⚙️ What Makes This App Special</strong><br>
+        Smart message understanding, automated response engine, business support automation, student assistance, fast API response, and scalable architecture.</p>
+        <p class="mb-4"><strong>🎯 Developer Vision</strong><br>
+        “To build intelligent African digital systems that make communication, education, and business automation accessible to everyone.”</p>
+        <p class="mb-4"><strong>🌍 Impact Goal</strong><br>
+        Improve business communication speed, help students access instant help, reduce workload for support teams, introduce AI to small businesses, create digital job opportunities.</p>
+        <blockquote class="border-l-4 border-green-500 pl-4 italic text-gray-700 my-4">
+            “I didn’t just build an app — I built a solution to the communication problems I saw around me. This system is designed to help people work faster, learn easier, and connect better.”<br>
+            — Brian Ondieki (Mr. Nex)
+        </blockquote>
+    </div>
+
+    <!-- Developer Identity & Contact -->
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="text-xl font-bold text-green-700 mb-3">📞 Contact & Identity</h3>
+            <ul class="space-y-2">
+                <li><strong>Name:</strong> Brian Ondieki (Mr. Nex)</li>
+                <li><strong>Role:</strong> Founder & Lead Developer / AI Systems Engineer</li>
+                <li><strong>Tagline:</strong> Building AI-powered educational solutions for students.</li>
+                <li><strong>Phone (WhatsApp):</strong> <a href="https://wa.me/254114812308" class="text-green-600">+254 114 812 308</a></li>
+                <li><strong>Email:</strong> <a href="mailto:nexo27716@gmail.com" class="text-green-600">nexo27716@gmail.com</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/brtjjg" class="text-green-600" target="_blank">github.com/brtjjg</a></li>
+                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/nexoraearn" class="text-green-600" target="_blank">@nexoraearn</a></li>
+                <li><strong>TikTok:</strong> <a href="https://www.tiktok.com/@progra.mmer" class="text-green-600" target="_blank">@progra.mmer</a></li>
+                <li><strong>YouTube:</strong> <a href="https://youtube.com/@nex6250" class="text-green-600" target="_blank">@nex6250</a></li>
+            </ul>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="text-xl font-bold text-green-700 mb-3">⚙️ Skills & Services</h3>
+            <div class="mb-4">
+                <h4 class="font-semibold">Skills</h4>
+                <div class="flex flex-wrap gap-2 mt-1">
+                    <span class="bg-gray-100 px-2 py-1 rounded">Python</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded">Flask</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded">Firebase</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded">AI Development</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded">Android Apps</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded">HTML/CSS/JS</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded">Git</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-semibold">Services Offered</h4>
+                <ul class="list-disc pl-5 mt-1">
+                    <li>Website Development</li>
+                    <li>Mobile App Development</li>
+                    <li>AI Chatbot Development</li>
+                    <li>Educational Platforms</li>
+                    <li>M-PESA Integration</li>
+                    <li>Hosting & Deployment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission & Projects -->
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="text-xl font-bold text-green-700 mb-3">🌟 Mission Statement</h3>
+            <p>To use technology to simplify education, career guidance, and access to opportunities for students across Kenya and Africa.</p>
+            <h3 class="text-xl font-bold text-green-700 mt-4 mb-2">🚀 Current Projects</h3>
+            <ul class="list-disc pl-5">
+                <li>EduPoint AI</li>
+                <li>KUCCPS Assistant</li>
+                <li>Engineering Learning App</li>
+                <li>Scholarship Finder</li>
+            </ul>
+        </div>
+        <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="text-xl font-bold text-green-700 mb-3">📱 Community & Social</h3>
+            <ul class="space-y-2">
+                <li><a href="https://chat.whatsapp.com/CQB9ZfYe9B683p6Df35YCG" class="text-green-600" target="_blank">WhatsApp Group</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=61589138732515" class="text-green-600" target="_blank">Facebook Page</a></li>
+                <li><a href="https://www.instagram.com/edupointkenya" class="text-green-600" target="_blank">Instagram (@edupointkenya)</a></li>
+                <li><a href="https://www.tiktok.com/@edupointkenya" class="text-green-600" target="_blank">TikTok (@edupointkenya)</a></li>
+                <li>Support Email: <a href="mailto:academichelpdesk1@gmail.com" class="text-green-600">academichelpdesk1@gmail.com</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Partnership Section -->
+    <div class="bg-white rounded-xl shadow p-8 text-center">
+        <h2 class="text-2xl font-bold text-green-700 mb-4">🤝 Partnership Opportunities</h2>
+        <p class="mb-6">I am open to collaborations, sponsorships, and partnerships in education, technology, and business automation. Whether you're an organisation, investor, or fellow developer, let's work together to build intelligent solutions for Africa.</p>
+        <a href="mailto:nexo27716@gmail.com?subject=Partnership%20Inquiry%20-%20EduPoint%20AI&body=Hello%20Mr.%20Nex%2C%0D%0A%0D%0AI%20am%20interested%20in%20partnering%20with%20you%20on%20the%20following%20idea%2Fproject%3A%0D%0A%0D%0A%5BDescribe%20your%20partnership%20idea%5D%0D%0A%0D%0ALooking%20forward%20to%20collaborating!%0D%0A%0D%0ABest%20regards" 
+           class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition">
+            💼 Send Partnership Request
+        </a>
+        <p class="text-sm text-gray-500 mt-4">Clicking will open your email client with a pre‑written message.</p>
+    </div>
+</div>
+'''
+
+@app.route('/developer')
+def developer_page():
+    unread_count = 0
+    if current_user.is_authenticated:
+        unread_count = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', DEVELOPER_HTML)
     return render_template_string(template, unread_count=unread_count)
 
 if __name__ == '__main__':
