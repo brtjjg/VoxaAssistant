@@ -123,6 +123,120 @@ LEGAL_RULES_HTML = '''
 </div>
 '''
 
+ABOUT_US_HTML = '''
+<div class="max-w-5xl mx-auto">
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-green-700">About Us</h1>
+        <p class="text-gray-500">Learn more about our platform, mission, and values</p>
+    </div>
+    <div class="bg-white rounded-lg shadow p-8 space-y-6">
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Welcome to Our Platform</h2>
+            <p>Welcome to our AI-powered digital platform, a modern technology solution created to transform the way individuals and businesses communicate, access information, and manage digital interactions. We believe that technology should be accessible, efficient, reliable, and beneficial to everyone. Our platform was established with a vision of creating intelligent systems that simplify communication, increase productivity, and help users achieve their goals faster.</p>
+            <p class="mt-2">In today's digital world, communication plays a critical role in personal growth, business success, customer satisfaction, and organizational efficiency. As technology continues to evolve, people expect faster responses, better support, and smarter solutions. Our AI-powered assistant was developed to meet these expectations by providing instant assistance, intelligent automation, and reliable digital support at any time of the day.</p>
+            <p class="mt-2">We are committed to delivering innovative solutions that empower users through the responsible use of artificial intelligence. Whether you are an entrepreneur, student, professional, freelancer, business owner, or organization, our platform is designed to provide value through intelligent automation and user-focused services.</p>
+        </section>
+        
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Who We Are</h2>
+            <p>We are a technology-focused organization dedicated to developing intelligent digital solutions powered by artificial intelligence. Our team is driven by innovation, creativity, and a passion for solving real-world problems through technology.</p>
+            <p class="mt-2">Our platform combines modern software development practices, intelligent automation systems, and advanced AI capabilities to create a seamless user experience. We continuously invest in research, development, and innovation to ensure our services remain effective, secure, and aligned with the evolving needs of our users.</p>
+            <p class="mt-2">We believe that technology should not be limited to large corporations or specialized industries. Instead, it should be available to everyone, regardless of their background, location, or level of technical expertise.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Our Story</h2>
+            <p>The idea behind our platform emerged from a simple observation: many people and businesses struggle to manage communication efficiently. Customer inquiries often go unanswered, support teams become overwhelmed, and users experience delays when seeking information or assistance.</p>
+            <p class="mt-2">Recognizing these challenges, we set out to build an intelligent system capable of providing immediate support while maintaining accuracy, reliability, and user satisfaction. Through continuous learning, development, and feedback, our platform has evolved into a powerful communication assistant capable of serving a wide range of users and industries.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Our Mission</h2>
+            <p>Our mission is to empower individuals and businesses through intelligent technology that simplifies communication, improves efficiency, and provides reliable digital assistance.</p>
+            <ul class="list-disc pl-6 mt-2 space-y-1">
+                <li>Deliver fast and accurate AI-powered support.</li>
+                <li>Improve productivity through automation.</li>
+                <li>Make advanced technology accessible to everyone.</li>
+                <li>Enhance communication experiences across digital platforms.</li>
+                <li>Support businesses in providing better customer service.</li>
+                <li>Promote responsible and ethical use of artificial intelligence.</li>
+                <li>Create innovative solutions that solve real-world challenges.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Our Vision</h2>
+            <p>Our vision is to become a leading provider of intelligent communication and automation solutions that positively impact individuals, businesses, and communities around the world.</p>
+            <p class="mt-2">We envision a future where communication barriers are reduced through technology, businesses can provide instant support to customers, individuals have access to reliable digital assistance whenever needed, and artificial intelligence is used responsibly to improve lives.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">What We Do</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><strong>Intelligent Conversations</strong> – Our AI assistant engages in meaningful conversations and provides relevant responses.</li>
+                <li><strong>Automated Customer Support</strong> – Businesses can automate support processes for prompt responses.</li>
+                <li><strong>Information Assistance</strong> – Quick access to information through AI-powered assistance.</li>
+                <li><strong>Productivity Enhancement</strong> – Automate repetitive tasks and focus on what matters.</li>
+                <li><strong>Continuous Improvement</strong> – Ongoing development to enhance platform capabilities.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Our Core Values</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div><strong>Innovation</strong> – Constantly explore new ideas and technologies.</div>
+                <div><strong>Integrity</strong> – Honesty, transparency, and ethical practices.</div>
+                <div><strong>Reliability</strong> – Dependable solutions users can trust.</div>
+                <div><strong>User-Centered Design</strong> – Prioritizing user needs and experiences.</div>
+                <div><strong>Excellence</strong> – High-quality services and continuous improvement.</div>
+                <div><strong>Security</strong> – Protecting user data and maintaining system security.</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Our Commitment to Users</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Providing reliable and accessible services.</li>
+                <li>Continuously improving system performance.</li>
+                <li>Protecting user privacy.</li>
+                <li>Maintaining high standards of security.</li>
+                <li>Listening to user feedback.</li>
+                <li>Delivering excellent customer experiences.</li>
+                <li>Supporting responsible AI practices.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Our Users</h2>
+            <p>Our platform serves a diverse community including small business owners, entrepreneurs, freelancers, students, professionals, organizations, customer support teams, online service providers, and digital communities.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Future Goals</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Expanding AI capabilities.</li>
+                <li>Introducing new automation features.</li>
+                <li>Improving multilingual support.</li>
+                <li>Enhancing system performance and reliability.</li>
+                <li>Developing additional business tools.</li>
+                <li>Expanding access to more users and industries.</li>
+                <li>Strengthening privacy and security measures.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">Our Promise</h2>
+            <p>Our promise is simple: to provide intelligent, reliable, and user-focused solutions that help people communicate more effectively and operate more efficiently.</p>
+            <p class="mt-2">Thank you for being part of our journey. We look forward to serving you and helping you achieve more through the power of intelligent technology.</p>
+        </section>
+
+        <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
+            © 2026 NEXISS. All rights reserved.
+        </div>
+    </div>
+</div>
+'''
+
 from flask import Flask, request, jsonify, render_template_string, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -410,14 +524,16 @@ BASE_TEMPLATE = """
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@2.7.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Footer with legal links -->
-<footer class="text-center text-gray-500 text-sm py-6 mt-12 border-t">
-    <div class="container mx-auto px-4">
+<footer class="text-center text-gray-250 text-sm py-3 mt-6 border-t">
+    <div class="container mx-auto px-2">
         <p>
-            <a href="{{ url_for('terms_page') }}" class="hover:text-green-600 mx-2">📜 Terms & Conditions</a>
+            <a href="{{ url_for('terms_page') }}" class="hover:text-blue-600 mx-1">📜 Terms & Conditions</a>
             |
-            <a href="{{ url_for('rules_page') }}" class="hover:text-green-600 mx-2">⚠️ Rules & Regulations</a>
+            <a href="{{ url_for('rules_page') }}" class="hover:text-orange-600 mx-1">⚠️ Rules & Regulations</a>
+            |
+            <a href="{{ url_for('about_page') }}" class="hover:text-blue-600 mx-1">📖 About Us</a>
         </p>
         <p class="mt-2">© 2026 NEXISS. All rights reserved.</p>
     </div>
@@ -1014,6 +1130,14 @@ def rules_page():
     if current_user.is_authenticated:
         unread_count = Notification.query.filter_by(user_id=current_user.id, read=False).count()
     template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', LEGAL_RULES_HTML)
+    return render_template_string(template, unread_count=unread_count)
+
+@app.route('/about')
+def about_page():
+    unread_count = 0
+    if current_user.is_authenticated:
+        unread_count = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', ABOUT_US_HTML)
     return render_template_string(template, unread_count=unread_count)
 
 if __name__ == '__main__':
