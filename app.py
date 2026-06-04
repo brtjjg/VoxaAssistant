@@ -1534,9 +1534,9 @@ DEVELOPER_HTML = '''
             <ul class="space-y-2">
                 <li><a href="https://chat.whatsapp.com/FiGII7Ca6jX1sKNwDV5ZLB?s=cl&p=a&ilr=2" class="text-green-600" target="_blank">WhatsApp Group</a></li>
                 <li><a href="https://www.facebook.com/kenyakaleidoscope?mibextid=ZbWKwL" class="text-green-600" target="_blank">Facebook Page</a></li>
-                <li><a href="https://www.instagram.com/nexoraearn?igsh=ZGcycjlzZWU5dDJl" class="text-green-600" target="_blank">Instagram (@edupointkenya)</a></li>
+                <li><a href="https://www.instagram.com/nexoraearn?igsh=ZGcycjlzZWU5dDJl" class="text-green-600" target="_blank">Instagram (@nexoraearn)</a></li>
                 <li><a href="https://www.tiktok.com/@progra.mmer?_r=1&_d=ejf03fh49gg804&sec_uid=MS4wLjABAAAAXEOfvblHuP8O7R4zBGhCcmlszW-Oly_O8AQr9-S-PKWTbiJK3O3uaUCOmVdaaZ1Q&share_author_id=7449811721114616838&sharer_language=en&source=h5_m&u_code=ehlhmei087kc1b&timestamp=1780606605&user_id=7449811721114616838&sec_user_id=MS4wLjABAAAAXEOfvblHuP8O7R4zBGhCcmlszW-Oly_O8AQr9-S-PKWTbiJK3O3uaUCOmVdaaZ1Q&item_author_type=1&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7646134353182312212&share_link_id=bc778588-6e8d-4535-9b2a-b279efcbc568&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1 " class="text-green-600" target="_blank">TikTok (@edupointkenya)</a></li>
-                <li>Support Email: <a href="mailto:smartydigitalbusiness@gmail.com" class="text-green-600">academichelpdesk1@gmail.com</a></li>
+                <li>Support Email: <a href="mailto:smartydigitalbusiness@gmail.com" class="text-green-600">smartdigitalbusiness@gmail.com</a></li>
             </ul>
         </div>
     </div>
