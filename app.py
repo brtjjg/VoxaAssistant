@@ -13,6 +13,116 @@ import hmac
 from datetime import datetime, timedelta
 from functools import wraps
 
+# ========== LEGAL CONTENT (HTML strings) ==========
+LEGAL_TERMS_HTML = '''
+<div class="max-w-5xl mx-auto">
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-green-700">Terms and Conditions</h1>
+        <p class="text-gray-500">Last Updated: June 2026</p>
+    </div>
+    <div class="bg-white rounded-lg shadow p-8">
+        <p class="mb-4">Welcome to <strong>NEXISS</strong>. These Terms and Conditions govern your access to and use of our website, mobile applications, AI services, freelance marketplace services, messaging systems, payment systems, and related digital platforms. By accessing or using our platform, you agree to comply with and be bound by these Terms and Conditions.</p>
+        <p class="mb-6">If you do not agree with any part of these terms, you must discontinue use of the platform immediately.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">1. Definitions</h3>
+        <ul class="list-disc pl-6 mb-4"><li><strong>Platform</strong> refers to NEXISS and all related services.</li><li><strong>User</strong> refers to any person accessing or using the platform.</li><li><strong>Client</strong> refers to a user purchasing services.</li><li><strong>Worker/Freelancer</strong> refers to a user offering services.</li><li><strong>Administrator</strong> refers to authorized personnel managing the platform.</li><li><strong>Service</strong> refers to any digital product, freelance service, AI assistance, or platform feature available on NEXISS.</li></ul>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">2. Eligibility</h3>
+        <p class="mb-4">Users must be at least 18 years old or have permission from a parent or legal guardian. By creating an account, you confirm that the information you provide is accurate and truthful.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">3. Account Registration</h3>
+        <p class="mb-2">Users are responsible for:</p>
+        <ul class="list-disc pl-6 mb-4"><li>Maintaining account security.</li><li>Protecting passwords and login credentials.</li><li>Ensuring account information remains accurate.</li><li>Reporting unauthorized access immediately.</li></ul>
+        <p class="mb-4">NEXISS is not liable for losses caused by unauthorized access resulting from user negligence.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">4. Service Availability</h3>
+        <p class="mb-4">We strive to maintain uninterrupted service but do not guarantee continuous availability. Services may be interrupted due to system maintenance, technical failures, security updates, network issues, or events beyond our control.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">5. User Conduct</h3>
+        <p class="mb-4">Users agree to act honestly and professionally, respect other users, follow all applicable laws, and avoid activities that may harm the platform.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">6. Payments</h3>
+        <p class="mb-4">Payments processed through approved payment methods, including M-PESA, are subject to verification. NEXISS reserves the right to hold suspicious transactions, investigate fraudulent activities, and reverse unauthorized transactions where legally permitted.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">7. Refund Policy</h3>
+        <p class="mb-4">Refund requests may be reviewed on a case-by-case basis. Refunds may be denied where services have already been delivered, users violate platform policies, or fraudulent activities are detected.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">8. Intellectual Property</h3>
+        <p class="mb-4">All platform content, branding, logos, software, designs, and systems remain the property of NEXISS unless otherwise stated. Unauthorized copying, distribution, or modification is prohibited.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">9. Limitation of Liability</h3>
+        <p class="mb-4">NEXISS shall not be liable for indirect damages, business losses, data loss, lost profits, or service interruptions. Users utilize the platform at their own risk.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">10. Suspension and Termination</h3>
+        <p class="mb-4">We reserve the right to suspend accounts, restrict platform access, or permanently terminate accounts without prior notice when violations are detected.</p>
+        
+        <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">11. Changes to Terms</h3>
+        <p class="mb-4">NEXISS may modify these terms at any time. Continued use of the platform after changes constitutes acceptance of updated terms.</p>
+        
+        <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
+            © 2026 NEXISS. All rights reserved.
+        </div>
+    </div>
+</div>
+'''
+
+LEGAL_RULES_HTML = '''
+<div class="max-w-5xl mx-auto">
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-green-700">Rules and Regulations</h1>
+        <p class="text-gray-500">All users must follow these rules. Violations may result in warnings, suspension, or permanent ban.</p>
+    </div>
+    <div class="bg-white rounded-lg shadow p-8">
+        <div class="grid gap-4">
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">General Rules</h3>
+                <ul class="list-decimal pl-6"><li>Users must provide accurate information during registration.</li><li>Users must maintain one primary account unless authorized.</li><li>Users must protect their account credentials.</li><li>Users must comply with all local and international laws.</li><li>Users must respect administrators and support staff.</li></ul>
+            </div>
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">Content Rules</h3>
+                <ul class="list-decimal pl-6"><li>No hate speech is allowed.</li><li>No harassment or bullying.</li><li>No threats or intimidation.</li><li>No impersonation of other users.</li><li>No misleading or false information.</li><li>No copyright infringement.</li><li>No unauthorized sharing of confidential information.</li></ul>
+            </div>
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">Marketplace Rules</h3>
+                <ul class="list-decimal pl-6"><li>Workers must deliver services as described.</li><li>Clients must provide clear project requirements.</li><li>Workers must not abandon active orders.</li><li>Clients must not abuse revision systems.</li><li>Users must communicate professionally.</li><li>Both parties must honor agreed timelines.</li></ul>
+            </div>
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">Payment Rules</h3>
+                <ul class="list-decimal pl-6"><li>Users may not manipulate payment systems.</li><li>Chargeback abuse is prohibited.</li><li>Money laundering activities are prohibited.</li><li>Fraudulent transactions are prohibited.</li><li>Users may not use stolen financial accounts.</li></ul>
+            </div>
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">Security Rules</h3>
+                <ul class="list-decimal pl-6"><li>Attempting to hack the platform is prohibited.</li><li>Distributing malware is prohibited.</li><li>Unauthorized access attempts are prohibited.</li><li>Testing platform vulnerabilities without authorization is prohibited.</li><li>Automated attacks against the platform are prohibited.</li></ul>
+            </div>
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">Messaging Rules</h3>
+                <ul class="list-decimal pl-6"><li>Users must not send spam.</li><li>Mass unsolicited messaging is prohibited.</li><li>Users must not share harmful links.</li><li>Scam-related communication is prohibited.</li><li>Messages containing illegal activities are prohibited.</li><li>Users may not use messaging systems to solicit off-platform payments.</li></ul>
+            </div>
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">AI Assistant Rules</h3>
+                <ul class="list-decimal pl-6"><li>Users may not attempt to manipulate the AI into violating platform policies.</li><li>AI-generated responses should not be considered professional legal, financial, or medical advice.</li><li>Users must independently verify critical information.</li><li>The AI assistant may refuse requests that violate platform policies.</li></ul>
+            </div>
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">Platform Integrity Rules</h3>
+                <ul class="list-decimal pl-6"><li>Users may not artificially inflate ratings.</li><li>Fake reviews are prohibited.</li><li>Referral abuse is prohibited.</li><li>Creating fake projects is prohibited.</li><li>Creating fake service listings is prohibited.</li><li>Users may not interfere with platform operations.</li></ul>
+            </div>
+            <div class="rule-card p-4 rounded-lg" style="background:#f9fafb; border-left:4px solid #10b981;">
+                <h3 class="font-bold text-green-700 text-lg mb-2">Administrative Rules</h3>
+                <ul class="list-decimal pl-6"><li>Administrators may investigate suspicious activities.</li><li>Administrators may remove content violating policies.</li><li>Administrators may suspend accounts pending investigation.</li><li>Administrative decisions regarding platform security are final.</li></ul>
+            </div>
+        </div>
+        <div class="mt-8 p-4 bg-gray-100 rounded-lg">
+            <h3 class="font-bold text-gray-800 mb-2">Enforcement</h3>
+            <ol class="list-decimal pl-6"><li>Warning</li><li>Content removal</li><li>Temporary restrictions</li><li>Account suspension</li><li>Permanent account termination</li><li>Payment withholding</li><li>Legal action where applicable</li></ol>
+            <p class="mt-4">By using NEXISS, users acknowledge that they have read, understood, and agreed to these Terms and Conditions and Rules and Regulations.</p>
+        </div>
+        <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
+            © 2026 NEXISS. All rights reserved.
+        </div>
+    </div>
+</div>
+'''
+
 from flask import Flask, request, jsonify, render_template_string, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -301,6 +411,18 @@ BASE_TEMPLATE = """
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Footer with legal links -->
+<footer class="text-center text-gray-500 text-sm py-6 mt-12 border-t">
+    <div class="container mx-auto px-4">
+        <p>
+            <a href="{{ url_for('terms_page') }}" class="hover:text-green-600 mx-2">📜 Terms & Conditions</a>
+            |
+            <a href="{{ url_for('rules_page') }}" class="hover:text-green-600 mx-2">⚠️ Rules & Regulations</a>
+        </p>
+        <p class="mt-2">© 2026 NEXISS. All rights reserved.</p>
+    </div>
+</footer>
+</footer>
 </body>
 </html>
 """
@@ -852,6 +974,47 @@ def webhook():
     except Exception as e:
         print(f"Webhook error: {e}")
     return 'OK', 200
+
+# ========== LEGAL PAGES (Directly embedded) ==========
+
+@app.route('/legal')
+def legal():
+    unread_count = 0
+    if current_user.is_authenticated:
+        unread_count = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    
+    # Full legal HTML as a string (simplified - I'll show the complete version below)
+    legal_html = '''
+    <div class="max-w-5xl mx-auto">
+        <h1 class="text-3xl font-bold text-green-700 mb-6">Legal & Terms</h1>
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-4">Terms and Conditions</h2>
+            <p class="text-sm text-gray-500 mb-4">Last Updated: June 2026</p>
+            <p>Welcome to NEXISS. These Terms and Conditions govern your access to...</p>
+            <!-- Add full terms here -->
+        </div>
+    </div>
+    '''
+    
+    # Wrap with BASE_TEMPLATE
+    template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', legal_html)
+    return render_template_string(template, unread_count=unread_count)
+
+@app.route('/terms')
+def terms_page():
+    unread_count = 0
+    if current_user.is_authenticated:
+        unread_count = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', LEGAL_TERMS_HTML)
+    return render_template_string(template, unread_count=unread_count)
+
+@app.route('/rules')
+def rules_page():
+    unread_count = 0
+    if current_user.is_authenticated:
+        unread_count = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', LEGAL_RULES_HTML)
+    return render_template_string(template, unread_count=unread_count)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
