@@ -621,39 +621,201 @@ def logout():
     flash('Logged out', 'info')
     return redirect(url_for('login'))
 
-# ---------- Dashboard (Enhanced) ----------
 @app.route('/dashboard')
 @login_required
 def dashboard():
     business = Business.query.filter_by(user_id=current_user.id).first()
     if not business:
+        flash('Please set up your business first', 'warning')
         return redirect(url_for('business_settings'))
-    total_convs = Conversation.query.filter_by(business_id=business.id).count()
-    open_convs = Conversation.query.filter_by(business_id=business.id, status='open').count()
-    total_leads = Lead.query.filter_by(business_id=business.id).count()
-    total_msgs = Message.query.join(Conversation).filter(Conversation.business_id==business.id).count()
-    recent_convs = Conversation.query.filter_by(business_id=business.id).order_by(Conversation.last_message_at.desc()).limit(5).all()
-    unread = Notification.query.filter_by(user_id=current_user.id, read=False).count()
-    # AI accuracy dummy
-    ai_accuracy = 87
-    content = '''
-    {% block content %}
-    <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white p-4 rounded shadow"><h3>Total Conversations</h3><p class="text-3xl font-bold">{{ total_convs }}</p></div>
-        <div class="bg-white p-4 rounded shadow"><h3>Open Chats</h3><p class="text-3xl font-bold">{{ open_convs }}</p></div>
-        <div class="bg-white p-4 rounded shadow"><h3>Leads</h3><p class="text-3xl font-bold">{{ total_leads }}</p></div>
-        <div class="bg-white p-4 rounded shadow"><h3>Messages</h3><p class="text-3xl font-bold">{{ total_msgs }}</p></div>
+    
+    # Sample data for the new dashboard
+    total_chats_today = Conversation.query.filter(
+        Conversation.business_id == business.id,
+        Conversation.last_message_at >= datetime.utcnow().replace(hour=0, minute=0, second=0)
+    ).count()
+    
+    # Average response time (mock - you can implement real calculation)
+    avg_response_time = "~2.3 sec"
+    
+    # Active users (mock)
+    active_users = 42
+    
+    # Earnings (if you have payments)
+    earnings = "$0.00"  # implement real sum if you have payments table
+    
+    last_activity = Conversation.query.filter_by(business_id=business.id).order_by(Conversation.last_message_at.desc()).first()
+    last_activity_time = last_activity.last_message_at.strftime('%H:%M') if last_activity else "Never"
+    
+    # Recent activities (mock)
+    recent_activities = [
+        "You asked AI a question",
+        "Message sent successfully",
+        "New lead captured",
+        "AI training updated"
+    ]
+    
+    # Notifications (mock)
+    notifications = [
+        {"title": "System Update", "message": "New AI features available", "type": "info"},
+        {"title": "Maintenance", "message": "Scheduled downtime tonight", "type": "warning"},
+        {"title": "New Message", "message": "You have 3 unread conversations", "type": "success"}
+    ]
+    
+    # Dashboard HTML content (embedded in the main content block)
+    dashboard_html = '''
+    <div class="space-y-6">
+        <!-- 2. Welcome Banner -->
+        <div class="bg-gradient-to-r from-green-500 to-green-700 rounded-xl shadow-lg p-6 text-white">
+            <h2 class="text-2xl font-bold">Welcome Back, {{ current_user.business_name or current_user.email.split('@')[0] }}! 👋</h2>
+            <p class="mt-2">Your AI assistant is ready to help you manage chats, answer questions, and automate your work anytime.</p>
+            <div class="flex flex-wrap gap-3 mt-4">
+                <a href="{{ url_for('conversations') }}" class="bg-white text-green-700 px-4 py-2 rounded-lg hover:bg-gray-100">🚀 Start Chat</a>
+                <a href="#" class="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30">🤖 Ask AI</a>
+                <a href="{{ url_for('analytics') }}" class="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30">📊 View Activity</a>
+            </div>
+        </div>
+        
+        <!-- 3. Quick Action Buttons -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <a href="{{ url_for('conversations') }}" class="bg-white p-4 rounded-xl shadow text-center hover:shadow-lg transition">
+                <div class="text-2xl mb-1">💬</div>
+                <span class="text-sm font-medium">Chat Assistant</span>
+            </a>
+            <a href="{{ url_for('broadcast') }}" class="bg-white p-4 rounded-xl shadow text-center hover:shadow-lg transition">
+                <div class="text-2xl mb-1">📩</div>
+                <span class="text-sm font-medium">Send Message</span>
+            </a>
+            <a href="{{ url_for('ai_training') }}" class="bg-white p-4 rounded-xl shadow text-center hover:shadow-lg transition">
+                <div class="text-2xl mb-1">🧠</div>
+                <span class="text-sm font-medium">AI Help Center</span>
+            </a>
+            <a href="{{ url_for('analytics') }}" class="bg-white p-4 rounded-xl shadow text-center hover:shadow-lg transition">
+                <div class="text-2xl mb-1">📊</div>
+                <span class="text-sm font-medium">Analytics</span>
+            </a>
+            <a href="{{ url_for('business_settings') }}" class="bg-white p-4 rounded-xl shadow text-center hover:shadow-lg transition">
+                <div class="text-2xl mb-1">⚙️</div>
+                <span class="text-sm font-medium">Settings</span>
+            </a>
+            <a href="{{ url_for('monetization') }}" class="bg-white p-4 rounded-xl shadow text-center hover:shadow-lg transition">
+                <div class="text-2xl mb-1">💳</div>
+                <span class="text-sm font-medium">Payments</span>
+            </a>
+        </div>
+        
+        <!-- 4. AI Assistant Box -->
+        <div class="bg-white rounded-xl shadow p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">🤖 AI Assistant Panel</h3>
+            <div class="flex gap-2">
+                <input type="text" id="aiInput" placeholder="Ask me anything..." class="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button onclick="askAI()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Send</button>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-3">
+                <button onclick="fillAI('Help me write a message')" class="text-sm bg-gray-100 px-3 py-1 rounded-full hover:bg-gray-200">📝 Help me write a message</button>
+                <button onclick="fillAI('Explain my account')" class="text-sm bg-gray-100 px-3 py-1 rounded-full hover:bg-gray-200">🔍 Explain my account</button>
+                <button onclick="fillAI('Generate business idea')" class="text-sm bg-gray-100 px-3 py-1 rounded-full hover:bg-gray-200">💡 Generate business idea</button>
+            </div>
+            <div id="aiResponse" class="mt-3 text-sm text-gray-600"></div>
+        </div>
+        
+        <!-- 5. Stats Overview -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div class="bg-white p-4 rounded-xl shadow">
+                <h4 class="text-gray-500 text-sm">📈 Total Chats Today</h4>
+                <p class="text-2xl font-bold">{{ total_chats_today }}</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow">
+                <h4 class="text-gray-500 text-sm">⚡ Response Speed</h4>
+                <p class="text-2xl font-bold">{{ avg_response_time }}</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow">
+                <h4 class="text-gray-500 text-sm">👥 Active Users</h4>
+                <p class="text-2xl font-bold">{{ active_users }}</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow">
+                <h4 class="text-gray-500 text-sm">💰 Earnings</h4>
+                <p class="text-2xl font-bold">{{ earnings }}</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow">
+                <h4 class="text-gray-500 text-sm">🕒 Last Activity</h4>
+                <p class="text-2xl font-bold">{{ last_activity_time }}</p>
+            </div>
+        </div>
+        
+        <!-- 6. Recent Activity & 7. Notifications Panel (side by side) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Recent Activity -->
+            <div class="bg-white rounded-xl shadow p-5">
+                <h3 class="text-lg font-bold mb-3">🕘 Recent Activity</h3>
+                <ul class="space-y-2">
+                    {% for activity in recent_activities %}
+                    <li class="flex items-center gap-2 text-gray-700"><span class="text-green-500">✔️</span> {{ activity }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- Notifications Panel -->
+            <div class="bg-white rounded-xl shadow p-5">
+                <h3 class="text-lg font-bold mb-3">🔔 Notifications</h3>
+                <ul class="space-y-3">
+                    {% for notif in notifications %}
+                    <li class="border-b pb-2">
+                        <div class="font-medium">{{ notif.title }}</div>
+                        <div class="text-sm text-gray-600">{{ notif.message }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 8. Footer Navigation (Mobile style) -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg md:hidden block">
+            <div class="flex justify-around py-2">
+                <a href="{{ url_for('dashboard') }}" class="text-green-600"><i class="fas fa-home"></i> Home</a>
+                <a href="{{ url_for('conversations') }}" class="text-gray-600"><i class="fas fa-comment"></i> Chat</a>
+                <a href="{{ url_for('analytics') }}" class="text-gray-600"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="{{ url_for('monetization') }}" class="text-gray-600"><i class="fas fa-wallet"></i> Wallet</a>
+                <a href="{{ url_for('business_settings') }}" class="text-gray-600"><i class="fas fa-user"></i> Profile</a>
+            </div>
+        </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <div class="bg-white p-4 rounded shadow"><h3>AI Accuracy</h3><div class="progress"><div class="progress-bar bg-success" style="width: {{ ai_accuracy }}%">{{ ai_accuracy }}%</div></div></div>
-        <div class="bg-white p-4 rounded shadow"><h3>Average Response Time</h3><p class="text-2xl">~4.2 sec</p></div>
-    </div>
-    <div class="bg-white p-4 rounded shadow"><h3>Recent Conversations</h3><table class="min-w-full">...</table></div>
-    {% endblock %}
+    
+    <script>
+        function askAI() {
+            const input = document.getElementById('aiInput').value;
+            if (!input) return;
+            document.getElementById('aiResponse').innerHTML = '<span class="text-gray-500">Thinking...</span>';
+            fetch('/ai-ask', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({question: input})
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('aiResponse').innerHTML = '<div class="bg-gray-100 p-2 rounded">' + data.answer + '</div>';
+                document.getElementById('aiInput').value = '';
+            })
+            .catch(err => {
+                document.getElementById('aiResponse').innerHTML = '<span class="text-red-500">Error, please try again.</span>';
+            });
+        }
+        function fillAI(text) {
+            document.getElementById('aiInput').value = text;
+        }
+    </script>
     '''
-    template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', content)
-    return render_template_string(template, total_convs=total_convs, open_convs=open_convs, total_leads=total_leads, total_msgs=total_msgs, recent_convs=recent_convs, ai_accuracy=ai_accuracy, unread_count=unread)
+    
+    unread = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', dashboard_html)
+    return render_template_string(template, 
+                                  unread_count=unread,
+                                  total_chats_today=total_chats_today,
+                                  avg_response_time=avg_response_time,
+                                  active_users=active_users,
+                                  earnings=earnings,
+                                  last_activity_time=last_activity_time,
+                                  recent_activities=recent_activities,
+                                  notifications=notifications)
 
 # ---------- Analytics ----------
 @app.route('/analytics')
@@ -879,6 +1041,19 @@ def ai_settings():
     '''
     template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', content)
     return render_template_string(template, unread_count=unread)
+
+@app.route('/ai-ask', methods=['POST'])
+@login_required
+def ai_ask():
+    data = request.get_json()
+    question = data.get('question', '')
+    if not question:
+        return jsonify({'answer': 'Please ask something.'})
+    
+    business = Business.query.filter_by(user_id=current_user.id).first()
+    # Use your existing generate_ai_response function (you already have it)
+    answer = generate_ai_response(business.id, current_user.id, question, current_user)
+    return jsonify({'answer': answer})
 
 # ---------- Knowledge Base (with file upload) ----------
 @app.route('/knowledge-base', methods=['GET', 'POST'])
