@@ -555,9 +555,6 @@ BASE_TEMPLATE = """
                 <li><a href="{{ url_for('knowledge_base') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-database mr-2"></i> Knowledge Base</a></li>
                 <li><a href="{{ url_for('monetization') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-money-bill-wave mr-2"></i> Plans & Billing</a></li>
                 <li><a href="{{ url_for('advanced_ai') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-microphone mr-2"></i> Advanced AI</a></li>
-                <li><a href="{{ url_for('about_page') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-info-circle mr-2"></i> About Us</a></li>
-                <li><a href="{{ url_for('terms_page') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-file-contract mr-2"></i> Terms</a></li>
-                <li><a href="{{ url_for('rules_page') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-gavel mr-2"></i> Rules</a></li>
                 <li><a href="{{ url_for('logout') }}" class="block p-2 hover:bg-red-50 rounded text-red-600" onclick="closeSidebar()"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a></li>
             </ul>
         </div>
@@ -1441,7 +1438,7 @@ DEVELOPER_HTML = '''
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-2xl shadow-xl p-8 text-white mb-8">
         <div class="flex flex-col md:flex-row items-center gap-6">
-            <img src="https://via.placeholder.com/120?text=Mr.Nex" alt="Mr. Nex" class="rounded-full border-4 border-white w-32 h-32 object-cover">
+            <img src="/static/mrnex.jpg" alt="Mr. Nex" class="rounded-full border-4 border-white w-32 h-32 object-cover">
             <div>
                 <h1 class="text-3xl font-bold">Brian Ondieki (Mr. Nex)</h1>
                 <p class="text-xl opacity-90">Founder & Lead Developer | AI Systems Engineer</p>
