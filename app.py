@@ -467,8 +467,7 @@ def log_activity(user_id, action, ip, user_agent):
     log = ActivityLog(user_id=user_id, action=action, ip_address=ip, user_agent=user_agent)
     db.session.add(log)
     db.session.commit()
-
-# ---------- Base HTML Template (Extended for Sidebar) ----------
+ 
 BASE_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
@@ -480,69 +479,160 @@ BASE_TEMPLATE = """
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Sidebar transition */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            background-color: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            transition: left 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .sidebar.open {
+            left: 0;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        .overlay.active {
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .sidebar {
+                position: sticky;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                transform: none;
+                box-shadow: none;
+                border-right: 1px solid #e5e7eb;
+            }
+            .sidebar.open {
+                left: 0;
+            }
+            .overlay {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
-    <div class="flex">
-        <!-- Sidebar -->
-        <div class="w-64 bg-white shadow min-h-screen p-4">
-            <h2 class="text-xl font-bold text-green-600 mb-6">WhatsApp AI</h2>
+    <!-- Overlay (closes sidebar on click) -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar (hidden by default on mobile) -->
+    <div id="sidebar" class="sidebar">
+        <div class="p-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-green-600">WhatsApp AI</h2>
+                <button onclick="closeSidebar()" class="md:hidden text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
             <ul class="space-y-2">
-                <li><a href="{{ url_for('dashboard') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a></li>
-                <li><a href="{{ url_for('analytics') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-chart-line mr-2"></i> Analytics</a></li>
-                <li><a href="{{ url_for('ai_training') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-robot mr-2"></i> AI Training</a></li>
-                <li><a href="{{ url_for('conversations') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-comments mr-2"></i> Conversations</a></li>
-                <li><a href="{{ url_for('leads') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-users mr-2"></i> Leads</a></li>
-                <li><a href="{{ url_for('broadcast') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-bullhorn mr-2"></i> Broadcast</a></li>
-                <li><a href="{{ url_for('notifications_page') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-bell mr-2"></i> Notifications</a></li>
-                <li><a href="{{ url_for('insights') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-lightbulb mr-2"></i> Insights</a></li>
-                <li><a href="{{ url_for('security') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-shield-alt mr-2"></i> Security</a></li>
-                <li><a href="{{ url_for('ai_settings') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-cog mr-2"></i> AI Settings</a></li>
-                <li><a href="{{ url_for('knowledge_base') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-database mr-2"></i> Knowledge Base</a></li>
-                <li><a href="{{ url_for('monetization') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-money-bill-wave mr-2"></i> Plans & Billing</a></li>
-                <li><a href="{{ url_for('advanced_ai') }}" class="block p-2 hover:bg-green-50 rounded"><i class="fas fa-microphone mr-2"></i> Advanced AI</a></li>
-                <li><a href="{{ url_for('logout') }}" class="block p-2 hover:bg-red-50 rounded text-red-600"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a></li>
+                <li><a href="{{ url_for('dashboard') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('analytics') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-chart-line mr-2"></i> Analytics</a></li>
+                <li><a href="{{ url_for('ai_training') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-robot mr-2"></i> AI Training</a></li>
+                <li><a href="{{ url_for('conversations') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-comments mr-2"></i> Conversations</a></li>
+                <li><a href="{{ url_for('leads') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-users mr-2"></i> Leads</a></li>
+                <li><a href="{{ url_for('broadcast') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-bullhorn mr-2"></i> Broadcast</a></li>
+                <li><a href="{{ url_for('notifications_page') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-bell mr-2"></i> Notifications</a></li>
+                <li><a href="{{ url_for('insights') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-lightbulb mr-2"></i> Insights</a></li>
+                <li><a href="{{ url_for('security') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-shield-alt mr-2"></i> Security</a></li>
+                <li><a href="{{ url_for('ai_settings') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-cog mr-2"></i> AI Settings</a></li>
+                <li><a href="{{ url_for('knowledge_base') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-database mr-2"></i> Knowledge Base</a></li>
+                <li><a href="{{ url_for('monetization') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-money-bill-wave mr-2"></i> Plans & Billing</a></li>
+                <li><a href="{{ url_for('advanced_ai') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-microphone mr-2"></i> Advanced AI</a></li>
+                <li><a href="{{ url_for('about_page') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-info-circle mr-2"></i> About Us</a></li>
+                <li><a href="{{ url_for('terms_page') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-file-contract mr-2"></i> Terms</a></li>
+                <li><a href="{{ url_for('rules_page') }}" class="block p-2 hover:bg-green-50 rounded" onclick="closeSidebar()"><i class="fas fa-gavel mr-2"></i> Rules</a></li>
+                <li><a href="{{ url_for('logout') }}" class="block p-2 hover:bg-red-50 rounded text-red-600" onclick="closeSidebar()"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a></li>
             </ul>
         </div>
-        <!-- Main Content -->
-        <div class="flex-1">
-            <nav class="bg-white shadow p-4 flex justify-between items-center">
-                <h1 class="text-xl">Welcome, {{ current_user.business_name or current_user.email }}</h1>
-                <div>
-                    <span class="mr-4"><i class="fas fa-bell"></i> <span class="badge bg-danger">{{ unread_count }}</span></span>
-                    <span>{{ current_user.plan|capitalize }} Plan</span>
-                </div>
-            </nav>
-            <div class="p-6">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                {% block content %}{% endblock %}
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="min-h-screen flex flex-col">
+        <!-- Top Bar with Hamburger Icon -->
+        <nav class="bg-white shadow p-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-green-600">WhatsApp AI</h1>
+            <div class="flex items-center space-x-4">
+                <span class="mr-2"><i class="fas fa-bell"></i> <span class="badge bg-danger">{{ unread_count }}</span></span>
+                <span>{{ current_user.plan|capitalize }} Plan</span>
+                <!-- Three dashes (hamburger) icon -->
+                <button id="menuBtn" class="text-gray-600 hover:text-green-600 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
             </div>
+        </nav>
+
+        <!-- Flash Messages -->
+        <div class="container mx-auto px-4 py-4">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         </div>
+
+        <!-- Page Content (center) -->
+        <main class="flex-1 container mx-auto px-4 pb-8">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-250 text-sm py-2 border-t">
+            <p>
+                <a href="{{ url_for('about_page') }}" class="hover:text-blue-250 mx-1">📖 About Us</a>
+                |
+                <a href="{{ url_for('terms_page') }}" class="hover:text-orange-250 mx-1">📜 Terms</a>
+                |
+                <a href="{{ url_for('rules_page') }}" class="hover:text-yellow-250 mx-2">⚠️ Rules</a>
+            </p>
+            <p class="mt-2">© 2026 NEXISS. All rights reserved.</p>
+        </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@2.7.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Footer with legal links -->
-<footer class="text-center text-gray-250 text-sm py-3 mt-6 border-t">
-    <div class="container mx-auto px-2">
-        <p>
-            <a href="{{ url_for('terms_page') }}" class="hover:text-blue-600 mx-1">📜 Terms & Conditions</a>
-            |
-            <a href="{{ url_for('rules_page') }}" class="hover:text-orange-600 mx-1">⚠️ Rules & Regulations</a>
-            |
-            <a href="{{ url_for('about_page') }}" class="hover:text-blue-600 mx-1">📖 About Us</a>
-        </p>
-        <p class="mt-2">© 2026 NEXISS. All rights reserved.</p>
-    </div>
-</footer>
-</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const menuBtn = document.getElementById('menuBtn');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+        menuBtn.addEventListener('click', openSidebar);
+        // On desktop (>=768px), we want the sidebar always visible? No – we keep it hidden but open on click.
+        // If you prefer the sidebar always visible on desktop, add a media query to set left:0.
+        // But the requirement says "three dashes on the right corner when clicked they show the side bar features"
+        // So we keep it hidden initially on all screen sizes.
+    </script>
 </body>
 </html>
 """
-
 # ---------- Routes: Auth & Core ----------
 @app.route('/')
 def index():
