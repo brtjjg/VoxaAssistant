@@ -1551,6 +1551,16 @@ DEVELOPER_HTML = '''
         </a>
         <p class="text-sm text-gray-500 mt-4">connect and discuss how we can collaborate.</p>
     </div>
+<!-- Share Your Skills Section -->
+<div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow p-8 text-center mt-8">
+    <h2 class="text-2xl font-bold text-blue-700 mb-4">🛠️ Share Your Skills</h2>
+    <p class="mb-6">Are you a developer, designer, content creator, or tech enthusiast? I'm always looking to connect with talented people. Tell me about your skills and let's collaborate.</p>
+    <a href="mailto:nexo27716@gmail.com?subject=Skills%20Showcase%20-%20Collaboration&body=Hello%20Mr.%20Nex%2C%0D%0A%0D%0AI%20have%20the%20following%20skills%20I%27d%20like%20to%20share%3A%0D%0A%0D%0A-%20Skill%201%0D%0A-%20Skill%202%0D%0A-%20Skill%203%0D%0A%0D%0AI%27m%20interested%20in%3A%20%5Bcollaboration%20type%5D%0D%0A%0D%0ALooking%20forward%20to%20connecting!%0D%0A%0D%0ABest%20regards" 
+       class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition">
+        ✉️ Submit Your Skills
+    </a>
+    <p class="text-sm text-gray-500 mt-4">We are happy for your request</p>
+</div>
 </div>
 '''
 
