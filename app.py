@@ -1541,6 +1541,69 @@ DEVELOPER_HTML = '''
         </div>
     </div>
 
+<!-- Collaborator Section -->
+<div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow p-8 mt-8">
+    <h2 class="text-2xl font-bold text-indigo-800 mb-6">🤝 Collaborator</h2>
+    <div class="flex flex-col md:flex-row gap-6">
+        <!-- Profile Photo (placeholder) -->
+        <div class="flex-shrink-0">
+            <img src="/static/collaborator.jpg" alt="Antony Kiragu Mburu" 
+                 class="w-32 h-32 rounded-full object-cover border-4 border-indigo-300 mx-auto md:mx-0"
+                 onerror="this.src='https://via.placeholder.com/128?text=Antony+K.'">
+        </div>
+        <!-- Details -->
+        <div class="flex-1">
+            <h3 class="text-xl font-bold text-gray-800">Antony Kiragu Mburu</h3>
+            <p class="text-indigo-600 font-medium">Full Stack Developer & Technical Advisor</p>
+            <p class="text-gray-700 mt-2">Antony is a skilled full‑stack developer with experience in web technologies, AI integration, and platform architecture. He contributed significantly to the backend optimization and testing of the WhatsApp AI assistant, ensuring reliability and scalability.</p>
+            
+            <div class="mt-4 grid md:grid-cols-2 gap-4">
+                <div>
+                    <h4 class="font-semibold text-gray-800">📌 Contributions</h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-600">
+                        <li>Backend Development</li>
+                        <li>Testing & Quality Assurance</li>
+                        <li>AI Training Support</li>
+                        <li>System Architecture Advice</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-800">🛠️ Skills</h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-600">
+                        <li>Python / Flask</li>
+                        <li>JavaScript / React</li>
+                        <li>WhatsApp Cloud API</li>
+                        <li>Database Design</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-4 grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                    <span class="font-semibold">📧 Email:</span>
+                    <a href="mailto:sirmburu05@gmail.com" class="text-indigo-600">sirmburu05@gmail.com</a>
+                </div>
+                <div>
+                    <span class="font-semibold">🌐 Website:</span>
+                    <a href="https://www.mulastify.com" target="_blank" class="text-indigo-600">mulastify.com</a>
+                </div>
+                <div>
+                    <span class="font-semibold">📞 Phone:</span>
+                    <span>+1 (208) 951-3261</span>
+                </div>
+                <div>
+                    <span class="font-semibold">📅 Collaboration:</span>
+                    <span>June 2026 – Present</span>
+                </div>
+            </div>
+
+            <blockquote class="mt-4 italic text-gray-700 border-l-4 border-indigo-400 pl-4">
+                "Technology should solve real-world problems and create opportunities for everyone."
+            </blockquote>
+        </div>
+    </div>
+</div>
+
     <!-- Partnership Section -->
     <div class="bg-white rounded-xl shadow p-8 text-center">
         <h2 class="text-2xl font-bold text-green-700 mb-4">🤝 Partnership Opportunities</h2>
