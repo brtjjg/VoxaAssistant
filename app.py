@@ -474,7 +474,7 @@ BASE_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp AI Assistant</title>
+    <title>Smart Desk AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -536,7 +536,7 @@ BASE_TEMPLATE = """
     <div id="sidebar" class="sidebar">
         <div class="p-4">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold text-green-600">WhatsApp AI</h2>
+                <h2 class="text-xl font-bold text-green-600">Smart Desk AI</h2>
                 <button onclick="closeSidebar()" class="md:hidden text-gray-500 hover:text-gray-700">
                     <i class="fas fa-times text-xl"></i>
                 </button>
@@ -564,7 +564,7 @@ BASE_TEMPLATE = """
     <div class="min-h-screen flex flex-col">
         <!-- Top Bar with Hamburger Icon -->
         <nav class="bg-white shadow p-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-green-600">WhatsApp AI</h1>
+            <h1 class="text-xl font-bold text-green-600">Smart Desk AI</h1>
             <div class="flex items-center space-x-4">
                 <span class="mr-2"><i class="fas fa-bell"></i> <span class="badge bg-danger">{{ unread_count }}</span></span>
                 <span>{{ current_user.plan|capitalize }} Plan</span>
@@ -1554,7 +1554,7 @@ DEVELOPER_HTML = '''
         <div class="flex-1">
             <h3 class="text-xl font-bold text-gray-800">Antony Kiragu Mburu</h3>
             <p class="text-indigo-600 font-medium">Full Stack Developer & Technical Advisor</p>
-            <p class="text-gray-700 mt-2">Antony is a skilled full‑stack developer with experience in web technologies, AI integration, and platform architecture. He contributed significantly to the backend optimization and testing of the WhatsApp AI assistant, ensuring reliability and scalability.</p>
+            <p class="text-gray-700 mt-2">Antony is a skilled full‑stack developer with experience in web technologies, AI integration, and platform architecture. He contributed significantly to the backend optimization and testing of the Smart Desk AI assistant, ensuring reliability and scalability.</p>
             
             <div class="mt-4 grid md:grid-cols-2 gap-4">
                 <div>
