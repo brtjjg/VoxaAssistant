@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-WhatsApp AI Business Assistant - Complete Professional Edition
+SmartDesk AI - Complete Professional Edition
 Run: pip install flask flask-sqlalchemy flask-login requests openai python-dotenv
 Then: python app.py
 """
@@ -21,11 +21,11 @@ LEGAL_TERMS_HTML = '''
         <p class="text-gray-500">Last Updated: June 2026</p>
     </div>
     <div class="bg-white rounded-lg shadow p-8">
-        <p class="mb-4">Welcome to <strong>NEXISS</strong>. These Terms and Conditions govern your access to and use of our website, mobile applications, AI services, freelance marketplace services, messaging systems, payment systems, and related digital platforms. By accessing or using our platform, you agree to comply with and be bound by these Terms and Conditions.</p>
+        <p class="mb-4">Welcome to <strong>SmartDesk AI</strong>. These Terms and Conditions govern your access to and use of our website, mobile applications, AI services, freelance marketplace services, messaging systems, payment systems, and related digital platforms. By accessing or using our platform, you agree to comply with and be bound by these Terms and Conditions.</p>
         <p class="mb-6">If you do not agree with any part of these terms, you must discontinue use of the platform immediately.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">1. Definitions</h3>
-        <ul class="list-disc pl-6 mb-4"><li><strong>Platform</strong> refers to NEXISS and all related services.</li><li><strong>User</strong> refers to any person accessing or using the platform.</li><li><strong>Client</strong> refers to a user purchasing services.</li><li><strong>Worker/Freelancer</strong> refers to a user offering services.</li><li><strong>Administrator</strong> refers to authorized personnel managing the platform.</li><li><strong>Service</strong> refers to any digital product, freelance service, AI assistance, or platform feature available on NEXISS.</li></ul>
+        <ul class="list-disc pl-6 mb-4"><li><strong>Platform</strong> refers to Smart Desk AI and all related services.</li><li><strong>User</strong> refers to any person accessing or using the platform.</li><li><strong>Client</strong> refers to a user purchasing services.</li><li><strong>Worker/Freelancer</strong> refers to a user offering services.</li><li><strong>Administrator</strong> refers to authorized personnel managing the platform.</li><li><strong>Service</strong> refers to any digital product, freelance service, AI assistance, or platform feature available on Smart Desk AI.</li></ul>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">2. Eligibility</h3>
         <p class="mb-4">Users must be at least 18 years old or have permission from a parent or legal guardian. By creating an account, you confirm that the information you provide is accurate and truthful.</p>
@@ -33,7 +33,7 @@ LEGAL_TERMS_HTML = '''
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">3. Account Registration</h3>
         <p class="mb-2">Users are responsible for:</p>
         <ul class="list-disc pl-6 mb-4"><li>Maintaining account security.</li><li>Protecting passwords and login credentials.</li><li>Ensuring account information remains accurate.</li><li>Reporting unauthorized access immediately.</li></ul>
-        <p class="mb-4">NEXISS is not liable for losses caused by unauthorized access resulting from user negligence.</p>
+        <p class="mb-4">SmartDesk AI is not liable for losses caused by unauthorized access resulting from user negligence.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">4. Service Availability</h3>
         <p class="mb-4">We strive to maintain uninterrupted service but do not guarantee continuous availability. Services may be interrupted due to system maintenance, technical failures, security updates, network issues, or events beyond our control.</p>
@@ -42,25 +42,25 @@ LEGAL_TERMS_HTML = '''
         <p class="mb-4">Users agree to act honestly and professionally, respect other users, follow all applicable laws, and avoid activities that may harm the platform.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">6. Payments</h3>
-        <p class="mb-4">Payments processed through approved payment methods, including M-PESA, are subject to verification. NEXISS reserves the right to hold suspicious transactions, investigate fraudulent activities, and reverse unauthorized transactions where legally permitted.</p>
+        <p class="mb-4">Payments processed through approved payment methods, including M-PESA, are subject to verification. Smart Desk AI reserves the right to hold suspicious transactions, investigate fraudulent activities, and reverse unauthorized transactions where legally permitted.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">7. Refund Policy</h3>
         <p class="mb-4">Refund requests may be reviewed on a case-by-case basis. Refunds may be denied where services have already been delivered, users violate platform policies, or fraudulent activities are detected.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">8. Intellectual Property</h3>
-        <p class="mb-4">All platform content, branding, logos, software, designs, and systems remain the property of NEXISS unless otherwise stated. Unauthorized copying, distribution, or modification is prohibited.</p>
+        <p class="mb-4">All platform content, branding, logos, software, designs, and systems remain the property of Smart Desk AI unless otherwise stated. Unauthorized copying, distribution, or modification is prohibited.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">9. Limitation of Liability</h3>
-        <p class="mb-4">NEXISS shall not be liable for indirect damages, business losses, data loss, lost profits, or service interruptions. Users utilize the platform at their own risk.</p>
+        <p class="mb-4">SmartDesk AI shall not be liable for indirect damages, business losses, data loss, lost profits, or service interruptions. Users utilize the platform at their own risk.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">10. Suspension and Termination</h3>
         <p class="mb-4">We reserve the right to suspend accounts, restrict platform access, or permanently terminate accounts without prior notice when violations are detected.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">11. Changes to Terms</h3>
-        <p class="mb-4">NEXISS may modify these terms at any time. Continued use of the platform after changes constitutes acceptance of updated terms.</p>
+        <p class="mb-4">SmartDesk AI may modify these terms at any time. Continued use of the platform after changes constitutes acceptance of updated terms.</p>
         
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
-            © 2026 NEXISS. All rights reserved.
+            © SmartDesk AI. All rights reserved.
         </div>
     </div>
 </div>
@@ -114,10 +114,10 @@ LEGAL_RULES_HTML = '''
         <div class="mt-8 p-4 bg-gray-100 rounded-lg">
             <h3 class="font-bold text-gray-800 mb-2">Enforcement</h3>
             <ol class="list-decimal pl-6"><li>Warning</li><li>Content removal</li><li>Temporary restrictions</li><li>Account suspension</li><li>Permanent account termination</li><li>Payment withholding</li><li>Legal action where applicable</li></ol>
-            <p class="mt-4">By using NEXISS, users acknowledge that they have read, understood, and agreed to these Terms and Conditions and Rules and Regulations.</p>
+            <p class="mt-4">By using SmartDesk AI, users acknowledge that they have read, understood, and agreed to these Terms and Conditions and Rules and Regulations.</p>
         </div>
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
-            © 2026 NEXISS. All rights reserved.
+            © 2026 SmartDesk AI. All rights reserved.
         </div>
     </div>
 </div>
@@ -231,7 +231,7 @@ ABOUT_US_HTML = '''
         </section>
 
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
-            © 2026 NEXISS. All rights reserved.
+            © 2026 SmartDesk AI. All rights reserved.
         </div>
     </div>
 </div>
@@ -605,7 +605,7 @@ BASE_TEMPLATE = """
                 |
                 <a href="{{ url_for('developer_page') }}" class="hover:text-green-600 mx-2">👨‍💻 Developer</a>
             </p>
-            <p class="mt-2">© 2026 NEXISS. All rights reserved.</p>
+            <p class="mt-2">© 2026 Smart Desk AI. All rights reserved.</p>
         </footer>
     </div>
 
@@ -646,7 +646,7 @@ AUTH_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoxaAssistant - Login/Register</title>
+    <title>SmartDesk AI - Login/Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -1398,7 +1398,7 @@ def legal():
         <div class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-2xl font-bold mb-4">Terms and Conditions</h2>
             <p class="text-sm text-gray-500 mb-4">Last Updated: June 2026</p>
-            <p>Welcome to NEXISS. These Terms and Conditions govern your access to...</p>
+            <p>Welcome to Smart Desk AI. These Terms and Conditions govern your access to...</p>
             <!-- Add full terms here -->
         </div>
     </div>
