@@ -1547,9 +1547,8 @@ DEVELOPER_HTML = '''
     <div class="flex flex-col md:flex-row gap-6">
         <!-- Profile Photo (placeholder) -->
         <div class="flex-shrink-0">
-            <img src="/static/collaborator.jpg" alt="Antony Kiragu Mburu" 
-                 class="w-32 h-32 rounded-full object-cover border-4 border-indigo-300 mx-auto md:mx-0"
-                 onerror="this.src='https://via.placeholder.com/128?text=Antony+K.'">
+            <img src="/static/collaborator.jpg" alt="Antony Kiragu Mburu"
+                class="w-32 h-32 rounded-full object-cover border-4 border-indigo-300 mx-auto md:mx-0">
         </div>
         <!-- Details -->
         <div class="flex-1">
