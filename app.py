@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SmartDesk AI - Complete Professional Edition
+XyronAI - Complete Professional Edition
 Run: pip install flask flask-sqlalchemy flask-login requests openai python-dotenv
 Then: python app.py
 """
@@ -21,7 +21,7 @@ LEGAL_TERMS_HTML = '''
         <p class="text-gray-500">Last Updated: June 2026</p>
     </div>
     <div class="bg-white rounded-lg shadow p-8">
-        <p class="mb-4">Welcome to <strong>SmartDesk AI</strong>. These Terms and Conditions govern your access to and use of our website, mobile applications, AI services, freelance marketplace services, messaging systems, payment systems, and related digital platforms. By accessing or using our platform, you agree to comply with and be bound by these Terms and Conditions.</p>
+        <p class="mb-4">Welcome to <strong>XyronAI</strong>. These Terms and Conditions govern your access to and use of our website, mobile applications, AI services, freelance marketplace services, messaging systems, payment systems, and related digital platforms. By accessing or using our platform, you agree to comply with and be bound by these Terms and Conditions.</p>
         <p class="mb-6">If you do not agree with any part of these terms, you must discontinue use of the platform immediately.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">1. Definitions</h3>
@@ -33,7 +33,7 @@ LEGAL_TERMS_HTML = '''
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">3. Account Registration</h3>
         <p class="mb-2">Users are responsible for:</p>
         <ul class="list-none pl-6 mb-4"><li>Maintaining account security.</li><li>Protecting passwords and login credentials.</li><li>Ensuring account information remains accurate.</li><li>Reporting unauthorized access immediately.</li></ul>
-        <p class="mb-4">SmartDesk AI is not liable for losses caused by unauthorized access resulting from user negligence.</p>
+        <p class="mb-4">XyronAI is not liable for losses caused by unauthorized access resulting from user negligence.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">4. Service Availability</h3>
         <p class="mb-4">We strive to maintain uninterrupted service but do not guarantee continuous availability. Services may be interrupted due to system maintenance, technical failures, security updates, network issues, or events beyond our control.</p>
@@ -51,16 +51,16 @@ LEGAL_TERMS_HTML = '''
         <p class="mb-4">All platform content, branding, logos, software, designs, and systems remain the property of XyronAI unless otherwise stated. Unauthorized copying, distribution, or modification is prohibited.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">9. Limitation of Liability</h3>
-        <p class="mb-4">SmartDesk AI shall not be liable for indirect damages, business losses, data loss, lost profits, or service interruptions. Users utilize the platform at their own risk.</p>
+        <p class="mb-4">XyronAI shall not be liable for indirect damages, business losses, data loss, lost profits, or service interruptions. Users utilize the platform at their own risk.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">10. Suspension and Termination</h3>
         <p class="mb-4">We reserve the right to suspend accounts, restrict platform access, or permanently terminate accounts without prior notice when violations are detected.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">11. Changes to Terms</h3>
-        <p class="mb-4">SmartDesk AI may modify these terms at any time. Continued use of the platform after changes constitutes acceptance of updated terms.</p>
+        <p class="mb-4">XyronAI may modify these terms at any time. Continued use of the platform after changes constitutes acceptance of updated terms.</p>
         
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
-            © SmartDesk AI. All rights reserved.
+            © XyronAI. All rights reserved.
         </div>
     </div>
 </div>
@@ -114,7 +114,7 @@ LEGAL_RULES_HTML = '''
         <div class="mt-8 p-4 bg-gray-100 rounded-lg">
             <h3 class="font-bold text-gray-800 mb-2">Enforcement</h3>
             <ol class="list-decimal pl-6"><li>Warning</li><li>Content removal</li><li>Temporary restrictions</li><li>Account suspension</li><li>Permanent account termination</li><li>Payment withholding</li><li>Legal action where applicable</li></ol>
-            <p class="mt-4">By using SmartDesk AI, users acknowledge that they have read, understood, and agreed to these Terms and Conditions and Rules and Regulations.</p>
+            <p class="mt-4">By using XyronAI, users acknowledge that they have read, understood, and agreed to these Terms and Conditions and Rules and Regulations.</p>
         </div>
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
 
@@ -131,7 +131,7 @@ LEGAL_RULES_HTML = '''
         </section>
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose XyronAI?</h2>
             <ul class="list-none pl-6 space-y-1">
                 <li>Fast and intelligent responses</li>
                 <li>24/7 automated assistance</li>
@@ -162,7 +162,7 @@ LEGAL_RULES_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
-            <p>Since its creation, SmartDesk AI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
+            <p>Since its creation, XyronAI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
         </section>
 
         <section>
@@ -180,7 +180,7 @@ LEGAL_RULES_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
-            <p>As technology evolves, SmartDesk AI will continue investing in:</p>
+            <p>As technology evolves, XyronAI will continue investing in:</p>
             <ul class="list-none pl-6 space-y-1">
                 <li>Advanced Artificial Intelligence</li>
                 <li>Voice Assistants</li>
@@ -192,7 +192,7 @@ LEGAL_RULES_HTML = '''
             <p class="mt-2 italic">"Empowering communication, automating tasks, and helping businesses succeed through intelligent technology." 🚀</p>
         </section>
 
-            © 2026 SmartDesk AI. All rights reserved.
+            © 2026 XyronAI. All rights reserved.
         </div>
     </div>
 </div>
@@ -320,7 +320,7 @@ ABOUT_US_HTML = '''
         </section>
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose XyronAI?</h2>
             <ul class="list-none pl-6 space-y-1">
                 <li>Fast and intelligent responses</li>
                 <li>24/7 automated assistance</li>
@@ -351,7 +351,7 @@ ABOUT_US_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
-            <p>Since its creation, SmartDesk AI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
+            <p>Since its creation, XyronAI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
         </section>
 
         <section>
@@ -369,7 +369,7 @@ ABOUT_US_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
-            <p>As technology evolves, SmartDesk AI will continue investing in:</p>
+            <p>As technology evolves, XyronAI will continue investing in:</p>
             <ul class="list-none pl-6 space-y-1">
                 <li>Advanced Artificial Intelligence</li>
                 <li>Voice Assistants</li>
@@ -381,7 +381,7 @@ ABOUT_US_HTML = '''
             <p class="mt-2 italic">"Empowering communication, automating tasks, and helping businesses succeed through intelligent technology." 🚀</p>
         </section>
 
-            © 2026 SmartDesk AI. All rights reserved.
+            © 2026 XyronAI. All rights reserved.
         </div>
     </div>
 </div>
@@ -769,7 +769,7 @@ BASE_TEMPLATE = """
         </section>
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose XyronAI?</h2>
             <ul class="list-none pl-6 space-y-1">
                 <li>Fast and intelligent responses</li>
                 <li>24/7 automated assistance</li>
@@ -800,7 +800,7 @@ BASE_TEMPLATE = """
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
-            <p>Since its creation, SmartDesk AI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
+            <p>Since its creation, XyronAI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
         </section>
 
         <section>
@@ -818,7 +818,7 @@ BASE_TEMPLATE = """
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
-            <p>As technology evolves, SmartDesk AI will continue investing in:</p>
+            <p>As technology evolves, XyronAI will continue investing in:</p>
             <ul class="list-none pl-6 space-y-1">
                 <li>Advanced Artificial Intelligence</li>
                 <li>Voice Assistants</li>
@@ -871,7 +871,7 @@ AUTH_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartDesk AI - Login/Register</title>
+    <title>XyronAI - Login/Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
