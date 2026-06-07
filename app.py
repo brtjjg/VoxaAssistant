@@ -117,6 +117,81 @@ LEGAL_RULES_HTML = '''
             <p class="mt-4">By using SmartDesk AI, users acknowledge that they have read, understood, and agreed to these Terms and Conditions and Rules and Regulations.</p>
         </div>
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Innovation and Continuous Improvement</li>
+                <li>Customer Satisfaction</li>
+                <li>Transparency and Trust</li>
+                <li>Privacy and Data Protection</li>
+                <li>Reliability and Performance</li>
+                <li>Accessibility for Everyone</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Fast and intelligent responses</li>
+                <li>24/7 automated assistance</li>
+                <li>Secure and reliable platform</li>
+                <li>Easy integration with business systems</li>
+                <li>Continuous updates and improvements</li>
+                <li>Affordable solutions for businesses of all sizes</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🔒 Security & Privacy</h2>
+            <p>We are committed to protecting user data through secure technologies, responsible data handling, and continuous security improvements. Privacy and user trust remain at the center of everything we build.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Schools and Educational Institutions</li>
+                <li>Healthcare Providers</li>
+                <li>E-commerce Businesses</li>
+                <li>Customer Support Teams</li>
+                <li>Financial Services</li>
+                <li>Small and Medium Enterprises</li>
+                <li>Government and Non-Profit Organizations</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
+            <p>Since its creation, SmartDesk AI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🤝 Community Commitment</h2>
+            <p>We believe technology should empower people. Our goal is to create tools that help businesses, students, entrepreneurs, and organizations achieve more through automation and artificial intelligence.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
+            <p>Email: <a href="mailto:support@smartdeskai.com" class="text-green-600">support@smartdeskai.com</a><br>
+            Website: <a href="https://www.smartdeskai.com" class="text-green-600">www.smartdeskai.com</a><br>
+            WhatsApp Support Available<br>
+            Business Hours: Monday – Sunday, 24/7 AI Assistance</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
+            <p>As technology evolves, SmartDesk AI will continue investing in:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Advanced Artificial Intelligence</li>
+                <li>Voice Assistants</li>
+                <li>Smart Business Analytics</li>
+                <li>Multi-Platform Integration</li>
+                <li>Enhanced Automation Workflows</li>
+                <li>Global Accessibility</li>
+            </ul>
+            <p class="mt-2 italic">"Empowering communication, automating tasks, and helping businesses succeed through intelligent technology." 🚀</p>
+        </section>
+
             © 2026 SmartDesk AI. All rights reserved.
         </div>
     </div>
@@ -231,6 +306,81 @@ ABOUT_US_HTML = '''
         </section>
 
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Innovation and Continuous Improvement</li>
+                <li>Customer Satisfaction</li>
+                <li>Transparency and Trust</li>
+                <li>Privacy and Data Protection</li>
+                <li>Reliability and Performance</li>
+                <li>Accessibility for Everyone</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Fast and intelligent responses</li>
+                <li>24/7 automated assistance</li>
+                <li>Secure and reliable platform</li>
+                <li>Easy integration with business systems</li>
+                <li>Continuous updates and improvements</li>
+                <li>Affordable solutions for businesses of all sizes</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🔒 Security & Privacy</h2>
+            <p>We are committed to protecting user data through secure technologies, responsible data handling, and continuous security improvements. Privacy and user trust remain at the center of everything we build.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Schools and Educational Institutions</li>
+                <li>Healthcare Providers</li>
+                <li>E-commerce Businesses</li>
+                <li>Customer Support Teams</li>
+                <li>Financial Services</li>
+                <li>Small and Medium Enterprises</li>
+                <li>Government and Non-Profit Organizations</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
+            <p>Since its creation, SmartDesk AI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🤝 Community Commitment</h2>
+            <p>We believe technology should empower people. Our goal is to create tools that help businesses, students, entrepreneurs, and organizations achieve more through automation and artificial intelligence.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
+            <p>Email: <a href="mailto:support@smartdeskai.com" class="text-green-600">support@smartdeskai.com</a><br>
+            Website: <a href="https://www.smartdeskai.com" class="text-green-600">www.smartdeskai.com</a><br>
+            WhatsApp Support Available<br>
+            Business Hours: Monday – Sunday, 24/7 AI Assistance</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
+            <p>As technology evolves, SmartDesk AI will continue investing in:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Advanced Artificial Intelligence</li>
+                <li>Voice Assistants</li>
+                <li>Smart Business Analytics</li>
+                <li>Multi-Platform Integration</li>
+                <li>Enhanced Automation Workflows</li>
+                <li>Global Accessibility</li>
+            </ul>
+            <p class="mt-2 italic">"Empowering communication, automating tasks, and helping businesses succeed through intelligent technology." 🚀</p>
+        </section>
+
             © 2026 SmartDesk AI. All rights reserved.
         </div>
     </div>
@@ -605,6 +755,81 @@ BASE_TEMPLATE = """
                 |
                 <a href="{{ url_for('developer_page') }}" class="hover:text-green-600 mx-2">👨‍💻 Developer</a>
             </p>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Innovation and Continuous Improvement</li>
+                <li>Customer Satisfaction</li>
+                <li>Transparency and Trust</li>
+                <li>Privacy and Data Protection</li>
+                <li>Reliability and Performance</li>
+                <li>Accessibility for Everyone</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Fast and intelligent responses</li>
+                <li>24/7 automated assistance</li>
+                <li>Secure and reliable platform</li>
+                <li>Easy integration with business systems</li>
+                <li>Continuous updates and improvements</li>
+                <li>Affordable solutions for businesses of all sizes</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🔒 Security & Privacy</h2>
+            <p>We are committed to protecting user data through secure technologies, responsible data handling, and continuous security improvements. Privacy and user trust remain at the center of everything we build.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Schools and Educational Institutions</li>
+                <li>Healthcare Providers</li>
+                <li>E-commerce Businesses</li>
+                <li>Customer Support Teams</li>
+                <li>Financial Services</li>
+                <li>Small and Medium Enterprises</li>
+                <li>Government and Non-Profit Organizations</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
+            <p>Since its creation, SmartDesk AI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🤝 Community Commitment</h2>
+            <p>We believe technology should empower people. Our goal is to create tools that help businesses, students, entrepreneurs, and organizations achieve more through automation and artificial intelligence.</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
+            <p>Email: <a href="mailto:support@smartdeskai.com" class="text-green-600">support@smartdeskai.com</a><br>
+            Website: <a href="https://www.smartdeskai.com" class="text-green-600">www.smartdeskai.com</a><br>
+            WhatsApp Support Available<br>
+            Business Hours: Monday – Sunday, 24/7 AI Assistance</p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
+            <p>As technology evolves, SmartDesk AI will continue investing in:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Advanced Artificial Intelligence</li>
+                <li>Voice Assistants</li>
+                <li>Smart Business Analytics</li>
+                <li>Multi-Platform Integration</li>
+                <li>Enhanced Automation Workflows</li>
+                <li>Global Accessibility</li>
+            </ul>
+            <p class="mt-2 italic">"Empowering communication, automating tasks, and helping businesses succeed through intelligent technology." 🚀</p>
+        </section>
+
             <p class="mt-2">© 2026 XyronAI. All rights reserved.</p>
         </footer>
     </div>
