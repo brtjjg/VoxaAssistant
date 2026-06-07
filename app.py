@@ -1660,13 +1660,18 @@ def send_reply():
 @app.route('/business-settings', methods=['GET', 'POST'])
 @login_required
 def business_settings():
+    import json
     business = Business.query.filter_by(user_id=current_user.id).first()
     if not business:
         business = Business(user_id=current_user.id)
         db.session.add(business)
         db.session.commit()
+
+    settings = json.loads(business.settings) if business.settings else {}
+    social = settings.get('social', {})
+
     if request.method == 'POST':
-        # Update knowledge base (FAQs)
+        # Save FAQs
         questions = request.form.getlist('question[]')
         answers = request.form.getlist('answer[]')
         KnowledgeBase.query.filter_by(business_id=business.id).delete()
@@ -1674,22 +1679,98 @@ def business_settings():
             if q and a:
                 kb = KnowledgeBase(business_id=business.id, question=q, answer=a)
                 db.session.add(kb)
+        # Save social links
+        social = {
+            'facebook': request.form.get('facebook'),
+            'instagram': request.form.get('instagram'),
+            'twitter': request.form.get('twitter'),
+            'linkedin': request.form.get('linkedin'),
+            'tiktok': request.form.get('tiktok'),
+            'youtube': request.form.get('youtube')
+        }
+        settings['social'] = social
+        business.settings = json.dumps(settings)
         db.session.commit()
-        flash('Knowledge base updated', 'success')
+        flash('Business settings saved!', 'success')
         return redirect(url_for('business_settings'))
+
     knowledge_items = KnowledgeBase.query.filter_by(business_id=business.id).all()
     unread = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+
     content = '''
-    {% block content %}
-    <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
-        <h2 class="text-2xl font-bold mb-4">Business Settings</h2>
-        <div class="mb-4 p-3 bg-blue-50 rounded"><p><strong>WhatsApp Setup:</strong> Phone Number ID: {{ phone_number_id }}<br>Webhook: {{ webhook_url }}<br>Verify Token: {{ verify_token }}</p></div>
-        <form method="POST"><h3>Knowledge Base (FAQ)</h3><div id="kbContainer">...</div><button type="button" id="addKB">+ Add FAQ</button><br><button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Save</button></form>
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-6">Business Settings</h2>
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h3 class="text-lg font-semibold mb-3">📱 WhatsApp Setup</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div><strong>Phone Number ID:</strong> {{ phone_number_id }}</div>
+                <div><strong>Webhook URL:</strong> {{ webhook_url }}</div>
+                <div><strong>Verify Token:</strong> {{ verify_token }}</div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h3 class="text-lg font-semibold mb-3">🔗 Social Media Links</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <input type="url" name="facebook" placeholder="Facebook URL" value="{{ social.facebook }}" class="border rounded px-3 py-2">
+                <input type="url" name="instagram" placeholder="Instagram URL" value="{{ social.instagram }}" class="border rounded px-3 py-2">
+                <input type="url" name="twitter" placeholder="Twitter URL" value="{{ social.twitter }}" class="border rounded px-3 py-2">
+                <input type="url" name="linkedin" placeholder="LinkedIn URL" value="{{ social.linkedin }}" class="border rounded px-3 py-2">
+                <input type="url" name="tiktok" placeholder="TikTok URL" value="{{ social.tiktok }}" class="border rounded px-3 py-2">
+                <input type="url" name="youtube" placeholder="YouTube URL" value="{{ social.youtube }}" class="border rounded px-3 py-2">
+            </div>
+        </div>
+
+        <form method="POST">
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="text-lg font-semibold mb-3">🧠 Knowledge Base (FAQ)</h3>
+                <div id="kbContainer" class="space-y-4">
+                    {% for item in knowledge_items %}
+                    <div class="kb-item border rounded p-3">
+                        <input type="text" name="question[]" value="{{ item.question }}" class="w-full border rounded mb-2 px-2 py-1" placeholder="Question">
+                        <textarea name="answer[]" rows="2" class="w-full border rounded px-2 py-1" placeholder="Answer">{{ item.answer }}</textarea>
+                        <button type="button" class="removeKB text-red-600 text-sm">Remove</button>
+                    </div>
+                    {% else %}
+                    <div class="kb-item border rounded p-3">
+                        <input type="text" name="question[]" class="w-full border rounded mb-2 px-2 py-1" placeholder="Question">
+                        <textarea name="answer[]" rows="2" class="w-full border rounded px-2 py-1" placeholder="Answer"></textarea>
+                        <button type="button" class="removeKB text-red-600 text-sm">Remove</button>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="button" id="addKB" class="mt-3 bg-gray-200 px-3 py-1 rounded">+ Add FAQ</button>
+            </div>
+            <div class="flex justify-end">
+                <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">💾 Save Settings</button>
+            </div>
+        </form>
     </div>
-    {% endblock %}
+    <script>
+        document.getElementById('addKB')?.addEventListener('click', function() {
+            const container = document.getElementById('kbContainer');
+            const div = document.createElement('div');
+            div.className = 'kb-item border rounded p-3';
+            div.innerHTML = `
+                <input type="text" name="question[]" class="w-full border rounded mb-2 px-2 py-1" placeholder="Question">
+                <textarea name="answer[]" rows="2" class="w-full border rounded px-2 py-1" placeholder="Answer"></textarea>
+                <button type="button" class="removeKB text-red-600 text-sm">Remove</button>
+            `;
+            container.appendChild(div);
+        });
+        document.getElementById('kbContainer')?.addEventListener('click', function(e) {
+            if (e.target.classList.contains('removeKB')) e.target.closest('.kb-item').remove();
+        });
+    </script>
     '''
     template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', content)
-    return render_template_string(template, knowledge_items=knowledge_items, phone_number_id=PHONE_NUMBER_ID or "Not set", webhook_url=request.host_url.rstrip('/') + '/webhook', verify_token=VERIFY_TOKEN, unread_count=unread)
+    return render_template_string(template,
+                                  knowledge_items=knowledge_items,
+                                  phone_number_id=os.getenv('WHATSAPP_PHONE_NUMBER_ID', 'Not set'),
+                                  webhook_url=request.host_url.rstrip('/') + '/webhook',
+                                  verify_token=os.getenv('WHATSAPP_VERIFY_TOKEN', 'my_verify_token'),
+                                  social=social,
+                                  unread_count=unread)
 
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
@@ -1989,3 +2070,80 @@ def developer_page():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
+
+# ========== PROFILE PAGE ==========
+import os
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = 'static/uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    if request.method == 'POST':
+        business_name = request.form.get('business_name')
+        phone_number = request.form.get('phone_number')
+        if business_name:
+            current_user.business_name = business_name
+        if phone_number:
+            current_user.phone_number = phone_number
+        
+        if 'profile_pic' in request.files:
+            file = request.files['profile_pic']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(f"user_{current_user.id}_{file.filename}")
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filepath)
+                try:
+                    from sqlalchemy import text
+                    db.session.execute(text("ALTER TABLE user ADD COLUMN profile_pic VARCHAR(200)"))
+                    db.session.commit()
+                except:
+                    pass
+                current_user.profile_pic = f'/static/uploads/{filename}'
+        
+        db.session.commit()
+        flash('Profile updated successfully!', 'success')
+        return redirect(url_for('profile'))
+    
+    unread = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    profile_pic = getattr(current_user, 'profile_pic', None) or 'https://ui-avatars.com/api/?name=' + (current_user.business_name or 'User').replace(' ', '+') + '&background=10b981&color=fff'
+    
+    content = '''
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-lg shadow p-8">
+            <h2 class="text-2xl font-bold mb-6">My Profile</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="text-center">
+                    <img src="{{ profile_pic }}" alt="Profile" class="w-32 h-32 rounded-full object-cover border-4 border-green-500 mx-auto">
+                    <p class="text-sm text-gray-500 mt-2">Profile picture</p>
+                </div>
+                <div class="flex-1">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label class="block font-medium mb-1">Business Name</label>
+                            <input type="text" name="business_name" value="{{ current_user.business_name }}" class="w-full border rounded-lg px-3 py-2">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-medium mb-1">Phone Number</label>
+                            <input type="tel" name="phone_number" value="{{ current_user.phone_number or '' }}" class="w-full border rounded-lg px-3 py-2">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-medium mb-1">Change Profile Picture</label>
+                            <input type="file" name="profile_pic" accept="image/*" class="w-full border rounded-lg px-3 py-2">
+                        </div>
+                        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    '''
+    template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', content)
+    return render_template_string(template, profile_pic=profile_pic, unread_count=unread)
