@@ -1399,7 +1399,7 @@ def broadcast():
                 <tbody>
                     {% for b in broadcasts %}
                     <tr class="border-b">
-                        <td class="px-4 py-2">{{ b.id.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td class="px-4 py-2">{{ b.sent_at.strftime("%Y-%m-%d %H:%M") if b.sent_at else "Pending" }}</td>
                         <td class="px-4 py-2">{{ b.message[:50] }}{% if b.message|length > 50 %}...{% endif %}</td>
                         <td class="px-4 py-2">{{ b.recipients.split(',')|length }}</td>
                         <td class="px-4 py-2">{{ b.delivery_count }}</td>
