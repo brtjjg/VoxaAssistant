@@ -25,14 +25,14 @@ LEGAL_TERMS_HTML = '''
         <p class="mb-6">If you do not agree with any part of these terms, you must discontinue use of the platform immediately.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">1. Definitions</h3>
-        <ul class="list-disc pl-6 mb-4"><li><strong>Platform</strong> refers to XyronAI and all related services.</li><li><strong>User</strong> refers to any person accessing or using the platform.</li><li><strong>Client</strong> refers to a user purchasing services.</li><li><strong>Worker/Freelancer</strong> refers to a user offering services.</li><li><strong>Administrator</strong> refers to authorized personnel managing the platform.</li><li><strong>Service</strong> refers to any digital product, freelance service, AI assistance, or platform feature available on XyronAI.</li></ul>
+        <ul class="list-none pl-6 mb-4"><li><strong>Platform</strong> refers to XyronAI and all related services.</li><li><strong>User</strong> refers to any person accessing or using the platform.</li><li><strong>Client</strong> refers to a user purchasing services.</li><li><strong>Worker/Freelancer</strong> refers to a user offering services.</li><li><strong>Administrator</strong> refers to authorized personnel managing the platform.</li><li><strong>Service</strong> refers to any digital product, freelance service, AI assistance, or platform feature available on XyronAI.</li></ul>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">2. Eligibility</h3>
         <p class="mb-4">Users must be at least 18 years old or have permission from a parent or legal guardian. By creating an account, you confirm that the information you provide is accurate and truthful.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">3. Account Registration</h3>
         <p class="mb-2">Users are responsible for:</p>
-        <ul class="list-disc pl-6 mb-4"><li>Maintaining account security.</li><li>Protecting passwords and login credentials.</li><li>Ensuring account information remains accurate.</li><li>Reporting unauthorized access immediately.</li></ul>
+        <ul class="list-none pl-6 mb-4"><li>Maintaining account security.</li><li>Protecting passwords and login credentials.</li><li>Ensuring account information remains accurate.</li><li>Reporting unauthorized access immediately.</li></ul>
         <p class="mb-4">SmartDesk AI is not liable for losses caused by unauthorized access resulting from user negligence.</p>
         
         <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">4. Service Availability</h3>
@@ -120,7 +120,7 @@ LEGAL_RULES_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Innovation and Continuous Improvement</li>
                 <li>Customer Satisfaction</li>
                 <li>Transparency and Trust</li>
@@ -132,7 +132,7 @@ LEGAL_RULES_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Fast and intelligent responses</li>
                 <li>24/7 automated assistance</li>
                 <li>Secure and reliable platform</li>
@@ -149,7 +149,7 @@ LEGAL_RULES_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Schools and Educational Institutions</li>
                 <li>Healthcare Providers</li>
                 <li>E-commerce Businesses</li>
@@ -181,7 +181,7 @@ LEGAL_RULES_HTML = '''
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
             <p>As technology evolves, SmartDesk AI will continue investing in:</p>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Advanced Artificial Intelligence</li>
                 <li>Voice Assistants</li>
                 <li>Smart Business Analytics</li>
@@ -228,7 +228,7 @@ ABOUT_US_HTML = '''
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">Our Mission</h2>
             <p>Our mission is to empower individuals and businesses through intelligent technology that simplifies communication, improves efficiency, and provides reliable digital assistance.</p>
-            <ul class="list-disc pl-6 mt-2 space-y-1">
+            <ul class="list-none pl-6 mt-2 space-y-1">
                 <li>Deliver fast and accurate AI-powered support.</li>
                 <li>Improve productivity through automation.</li>
                 <li>Make advanced technology accessible to everyone.</li>
@@ -247,7 +247,7 @@ ABOUT_US_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">What We Do</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li><strong>Intelligent Conversations</strong> – Our AI assistant engages in meaningful conversations and provides relevant responses.</li>
                 <li><strong>Automated Customer Support</strong> – Businesses can automate support processes for prompt responses.</li>
                 <li><strong>Information Assistance</strong> – Quick access to information through AI-powered assistance.</li>
@@ -270,7 +270,7 @@ ABOUT_US_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">Our Commitment to Users</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Providing reliable and accessible services.</li>
                 <li>Continuously improving system performance.</li>
                 <li>Protecting user privacy.</li>
@@ -288,7 +288,7 @@ ABOUT_US_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">Future Goals</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Expanding AI capabilities.</li>
                 <li>Introducing new automation features.</li>
                 <li>Improving multilingual support.</li>
@@ -309,7 +309,7 @@ ABOUT_US_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Innovation and Continuous Improvement</li>
                 <li>Customer Satisfaction</li>
                 <li>Transparency and Trust</li>
@@ -321,7 +321,7 @@ ABOUT_US_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Fast and intelligent responses</li>
                 <li>24/7 automated assistance</li>
                 <li>Secure and reliable platform</li>
@@ -338,7 +338,7 @@ ABOUT_US_HTML = '''
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Schools and Educational Institutions</li>
                 <li>Healthcare Providers</li>
                 <li>E-commerce Businesses</li>
@@ -370,7 +370,7 @@ ABOUT_US_HTML = '''
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
             <p>As technology evolves, SmartDesk AI will continue investing in:</p>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Advanced Artificial Intelligence</li>
                 <li>Voice Assistants</li>
                 <li>Smart Business Analytics</li>
@@ -758,7 +758,7 @@ BASE_TEMPLATE = """
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Innovation and Continuous Improvement</li>
                 <li>Customer Satisfaction</li>
                 <li>Transparency and Trust</li>
@@ -770,7 +770,7 @@ BASE_TEMPLATE = """
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose SmartDesk AI?</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Fast and intelligent responses</li>
                 <li>24/7 automated assistance</li>
                 <li>Secure and reliable platform</li>
@@ -787,7 +787,7 @@ BASE_TEMPLATE = """
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Schools and Educational Institutions</li>
                 <li>Healthcare Providers</li>
                 <li>E-commerce Businesses</li>
@@ -819,7 +819,7 @@ BASE_TEMPLATE = """
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
             <p>As technology evolves, SmartDesk AI will continue investing in:</p>
-            <ul class="list-disc pl-6 space-y-1">
+            <ul class="list-none pl-6 space-y-1">
                 <li>Advanced Artificial Intelligence</li>
                 <li>Voice Assistants</li>
                 <li>Smart Business Analytics</li>
@@ -1726,7 +1726,7 @@ DEVELOPER_HTML = '''
             </div>
             <div>
                 <h4 class="font-semibold">Services Offered</h4>
-                <ul class="list-disc pl-5 mt-1">
+                <ul class="list-none pl-5 mt-1">
                     <li>Website Development</li>
                     <li>Mobile App Development</li>
                     <li>AI Chatbot Development</li>
@@ -1744,7 +1744,7 @@ DEVELOPER_HTML = '''
             <h3 class="text-xl font-bold text-green-700 mb-3">🌟 Mission Statement</h3>
             <p>To use technology to simplify education, career guidance, and access to opportunities for students across Kenya and Africa.</p>
             <h3 class="text-xl font-bold text-green-700 mt-4 mb-2">🚀 Current Projects</h3>
-            <ul class="list-disc pl-5">
+            <ul class="list-none pl-5">
                 <li>business automation</lib>
                 <li>Ai business</li>
                 <li>African freelance platform</li>
@@ -1784,7 +1784,7 @@ DEVELOPER_HTML = '''
             <div class="mt-4 grid md:grid-cols-2 gap-4">
                 <div>
                     <h4 class="font-semibold text-gray-800">📌 Contributions</h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-600">
+                    <ul class="list-none pl-5 text-sm text-gray-600">
                         <li>Backend Development</li>
                         <li>Testing & Quality Assurance</li>
                         <li>AI Training Support</li>
@@ -1793,7 +1793,7 @@ DEVELOPER_HTML = '''
                 </div>
                 <div>
                     <h4 class="font-semibold text-gray-800">🛠️ Skills</h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-600">
+                    <ul class="list-none pl-5 text-sm text-gray-600">
                         <li>Python / Flask</li>
                         <li>JavaScript / React</li>
                         <li>WhatsApp Cloud API</li>
