@@ -8,6 +8,7 @@ Then: python app.py
 import os
 import re
 import json
+import time
 import hashlib
 import hmac
 from datetime import datetime, timedelta
@@ -498,10 +499,10 @@ class Broadcast(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
     message = db.Column(db.Text, nullable=False)
-    recipients = db.Column(db.Text)  # comma-separated phone numbers or 'all'
+    recipients = db.Column(db.Text)
     scheduled_at = db.Column(db.DateTime)
     sent_at = db.Column(db.DateTime)
-    status = db.Column(db.String(20), default='pending')  # pending, sent, failed
+    status = db.Column(db.String(20), default='pending')
     delivery_count = db.Column(db.Integer, default=0)
     business = db.relationship('Business', backref=db.backref('broadcasts', lazy=True))
 
@@ -1159,33 +1160,74 @@ def dashboard():
                                   recent_activities=recent_activities,
                                   notifications=notifications)
 
-# ---------- Analytics ----------
 @app.route('/analytics')
 @login_required
 def analytics():
     business = Business.query.filter_by(user_id=current_user.id).first()
-    # Sample data
-    daily_chats = [12, 19, 15, 17, 24, 30, 28]
+    if not business:
+        return redirect(url_for('business_settings'))
+    
+    # Real data counts
+    total_users = 1  # for now, since each business has one user. If you add team members later, count them.
+    
+    # Active users today: count unique customer_phone that sent messages today
+    today_start = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+    active_today = db.session.query(Conversation.customer_phone).filter(
+        Conversation.business_id == business.id,
+        Conversation.last_message_at >= today_start
+    ).distinct().count()
+    
+    # New users this week: count users created in last 7 days
+    week_ago = datetime.utcnow() - timedelta(days=7)
+    new_users_this_week = User.query.filter(User.created_at >= week_ago).count()
+    
+    # Peak chat hours: get messages per hour for last 7 days
+    hourly_data = [0]*24
+    seven_days_ago = datetime.utcnow() - timedelta(days=7)
+    messages = Message.query.join(Conversation).filter(
+        Conversation.business_id == business.id,
+        Message.created_at >= seven_days_ago
+    ).all()
+    for msg in messages:
+        hour = msg.created_at.hour
+        hourly_data[hour] += 1
+    
+    # Prepare chart labels (hours 0-23)
+    hours = [f"{h}:00" for h in range(24)]
+    
     unread = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    
     content = '''
     {% block content %}
     <h2 class="text-2xl font-bold mb-6">Analytics</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div class="bg-white p-4 rounded shadow"><h3>Total Users</h3><p class="text-2xl">1</p><small>Your business only</small></div>
-        <div class="bg-white p-4 rounded shadow"><h3>Active Users Today</h3><p class="text-2xl">42</p></div>
-        <div class="bg-white p-4 rounded shadow"><h3>New Users This Week</h3><p class="text-2xl">7</p></div>
+        <div class="bg-white p-4 rounded shadow"><h3>Total Users</h3><p class="text-2xl">{{ total_users }}</p><small>Your business only</small></div>
+        <div class="bg-white p-4 rounded shadow"><h3>Active Users Today</h3><p class="text-2xl">{{ active_today }}</p></div>
+        <div class="bg-white p-4 rounded shadow"><h3>New Users This Week</h3><p class="text-2xl">{{ new_users_this_week }}</p></div>
     </div>
     <div class="bg-white p-4 rounded shadow mb-6">
         <h3>Peak Chat Hours</h3>
         <canvas id="peakChart" height="100"></canvas>
     </div>
     <script>
-        new Chart(document.getElementById('peakChart'), { type: 'line', data: { labels: ['9am','10am','11am','12pm','1pm','2pm','3pm'], datasets: [{ label: 'Messages', data: {{ daily_chats|tojson }} }] } });
+        new Chart(document.getElementById('peakChart'), { 
+            type: 'line', 
+            data: { 
+                labels: {{ hours|tojson }}, 
+                datasets: [{ label: 'Messages', data: {{ hourly_data|tojson }}, borderColor: '#10b981', fill: false }] 
+            } 
+        });
     </script>
     {% endblock %}
     '''
     template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', content)
-    return render_template_string(template, daily_chats=daily_chats, unread_count=unread)
+    return render_template_string(template, 
+                                  total_users=total_users, 
+                                  active_today=active_today, 
+                                  new_users_this_week=new_users_this_week,
+                                  hours=hours,
+                                  hourly_data=hourly_data,
+                                  unread_count=unread)
 
 # ---------- AI Training ----------
 @app.route('/ai-training', methods=['GET', 'POST'])
@@ -1256,36 +1298,121 @@ def leads():
     template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', content)
     return render_template_string(template, leads=leads_list, unread_count=unread)
 
-# ---------- Broadcast Messaging ----------
 @app.route('/broadcast', methods=['GET', 'POST'])
 @login_required
 def broadcast():
     business = Business.query.filter_by(user_id=current_user.id).first()
+    if not business:
+        flash('Please set up your business first', 'warning')
+        return redirect(url_for('business_settings'))
+    
     if request.method == 'POST':
         message = request.form['message']
-        recipients = request.form['recipients']  # 'all' or comma list
-        scheduled = request.form.get('scheduled_at')
-        broadcast = Broadcast(business_id=business.id, message=message, recipients=recipients)
-        if scheduled:
-            broadcast.scheduled_at = datetime.fromisoformat(scheduled)
+        recipients_type = request.form['recipients_type']  # 'all_leads' or 'all_conversations' or 'test'
+        
+        # Get recipient list
+        recipient_numbers = []
+        if recipients_type == 'all_leads':
+            leads = Lead.query.filter_by(business_id=business.id).all()
+            recipient_numbers = [lead.customer_phone for lead in leads if lead.customer_phone]
+        elif recipients_type == 'all_conversations':
+            convs = Conversation.query.filter_by(business_id=business.id).all()
+            recipient_numbers = list(set([conv.customer_phone for conv in convs]))
+        elif recipients_type == 'test':
+            # Send to yourself (the logged-in user's phone number from User model)
+            test_number = current_user.phone_number
+            if test_number:
+                recipient_numbers = [test_number]
+            else:
+                flash('Please add your phone number in profile first', 'danger')
+                return redirect(url_for('business_settings'))
+        
+        # Create broadcast record
+        broadcast = Broadcast(
+            business_id=business.id,
+            message=message,
+            recipients=','.join(recipient_numbers),
+            status='pending'
+        )
         db.session.add(broadcast)
         db.session.commit()
-        flash('Broadcast scheduled', 'success')
+        
+        # Send messages (in background, but for simplicity we send now)
+        sent_count = 0
+        for phone in recipient_numbers:
+            result = send_whatsapp_message(phone, message)
+            if 'error' not in result:
+                sent_count += 1
+            time.sleep(0.5)  # avoid rate limits
+        
+        broadcast.status = 'sent'
+        broadcast.sent_at = datetime.utcnow()
+        broadcast.delivery_count = sent_count
+        db.session.commit()
+        
+        flash(f'Broadcast sent to {sent_count} of {len(recipient_numbers)} recipients', 'success')
         return redirect(url_for('broadcast'))
-    broadcasts = Broadcast.query.filter_by(business_id=business.id).all()
+    
+    # GET: show form and list of past broadcasts
+    broadcasts = Broadcast.query.filter_by(business_id=business.id).order_by(Broadcast.id.desc()).all()
     unread = Notification.query.filter_by(user_id=current_user.id, read=False).count()
+    
     content = '''
     {% block content %}
     <h2 class="text-2xl font-bold mb-6">Broadcast Messages</h2>
-    <div class="bg-white p-4 rounded shadow mb-6">
+    
+    <!-- Create Broadcast Form -->
+    <div class="bg-white p-6 rounded-lg shadow mb-8">
+        <h3 class="text-lg font-semibold mb-4">📢 New Broadcast</h3>
         <form method="POST">
-            <textarea name="message" class="w-full border p-2 mb-2" placeholder="Broadcast message..." required></textarea>
-            <input type="text" name="recipients" placeholder="Recipients: 'all' or comma-separated phone numbers" class="w-full border p-2 mb-2" required>
-            <input type="datetime-local" name="scheduled_at" class="border p-2 mb-2">
-            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Schedule Broadcast</button>
+            <div class="mb-4">
+                <label class="block font-medium mb-1">Message</label>
+                <textarea name="message" rows="4" class="w-full border rounded-lg px-3 py-2" placeholder="Type your broadcast message..." required></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block font-medium mb-1">Send to</label>
+                <select name="recipients_type" class="border rounded-lg px-3 py-2">
+                    <option value="all_leads">📞 All captured leads</option>
+                    <option value="all_conversations">💬 All conversations</option>
+                    <option value="test">🧪 Test (send to your own number)</option>
+                </select>
+            </div>
+            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">🚀 Send Broadcast</button>
         </form>
     </div>
-    <div class="bg-white p-4 rounded shadow"><h3>Past Broadcasts</h3>...</div>
+    
+    <!-- Past Broadcasts List -->
+    <div class="bg-white rounded-lg shadow">
+        <h3 class="text-lg font-semibold p-4 border-b">📜 Sent Broadcasts</h3>
+        {% if broadcasts %}
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-2 text-left">Date</th>
+                        <th class="px-4 py-2 text-left">Message</th>
+                        <th class="px-4 py-2 text-left">Recipients</th>
+                        <th class="px-4 py-2 text-left">Delivered</th>
+                        <th class="px-4 py-2 text-left">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in broadcasts %}
+                    <tr class="border-b">
+                        <td class="px-4 py-2">{{ b.id.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td class="px-4 py-2">{{ b.message[:50] }}{% if b.message|length > 50 %}...{% endif %}</td>
+                        <td class="px-4 py-2">{{ b.recipients.split(',')|length }}</td>
+                        <td class="px-4 py-2">{{ b.delivery_count }}</td>
+                        <td class="px-4 py-2"><span class="px-2 py-1 rounded text-sm {% if b.status=='sent' %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">{{ b.status }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="p-4 text-gray-500">No broadcasts sent yet. Create your first broadcast above.</p>
+        {% endif %}
+    </div>
     {% endblock %}
     '''
     template = BASE_TEMPLATE.replace('{% block content %}{% endblock %}', content)
