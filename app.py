@@ -119,57 +119,17 @@ LEGAL_RULES_HTML = '''
         </div>
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Innovation and Continuous Improvement</li>
-                <li>Customer Satisfaction</li>
-                <li>Transparency and Trust</li>
-                <li>Privacy and Data Protection</li>
-                <li>Reliability and Performance</li>
-                <li>Accessibility for Everyone</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose XyronAI?</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Fast and intelligent responses</li>
-                <li>24/7 automated assistance</li>
-                <li>Secure and reliable platform</li>
-                <li>Easy integration with business systems</li>
-                <li>Continuous updates and improvements</li>
-                <li>Affordable solutions for businesses of all sizes</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🔒 Security & Privacy</h2>
-            <p>We are committed to protecting user data through secure technologies, responsible data handling, and continuous security improvements. Privacy and user trust remain at the center of everything we build.</p>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Schools and Educational Institutions</li>
-                <li>Healthcare Providers</li>
-                <li>E-commerce Businesses</li>
-                <li>Customer Support Teams</li>
-                <li>Financial Services</li>
-                <li>Small and Medium Enterprises</li>
-                <li>Government and Non-Profit Organizations</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
-            <p>Since its creation, XyronAI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🤝 Community Commitment</h2>
-            <p>We believe technology should empower people. Our goal is to create tools that help businesses, students, entrepreneurs, and organizations achieve more through automation and artificial intelligence.</p>
-        </section>
+        
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
@@ -257,17 +217,7 @@ ABOUT_US_HTML = '''
             </ul>
         </section>
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">Our Core Values</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div><strong>Innovation</strong> – Constantly explore new ideas and technologies.</div>
-                <div><strong>Integrity</strong> – Honesty, transparency, and ethical practices.</div>
-                <div><strong>Reliability</strong> – Dependable solutions users can trust.</div>
-                <div><strong>User-Centered Design</strong> – Prioritizing user needs and experiences.</div>
-                <div><strong>Excellence</strong> – High-quality services and continuous improvement.</div>
-                <div><strong>Security</strong> – Protecting user data and maintaining system security.</div>
-            </div>
-        </section>
+        
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">Our Commitment to Users</h2>
@@ -308,57 +258,17 @@ ABOUT_US_HTML = '''
 
         <div class="text-center text-gray-500 text-sm mt-8 pt-4 border-t">
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Innovation and Continuous Improvement</li>
-                <li>Customer Satisfaction</li>
-                <li>Transparency and Trust</li>
-                <li>Privacy and Data Protection</li>
-                <li>Reliability and Performance</li>
-                <li>Accessibility for Everyone</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose XyronAI?</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Fast and intelligent responses</li>
-                <li>24/7 automated assistance</li>
-                <li>Secure and reliable platform</li>
-                <li>Easy integration with business systems</li>
-                <li>Continuous updates and improvements</li>
-                <li>Affordable solutions for businesses of all sizes</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🔒 Security & Privacy</h2>
-            <p>We are committed to protecting user data through secure technologies, responsible data handling, and continuous security improvements. Privacy and user trust remain at the center of everything we build.</p>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Schools and Educational Institutions</li>
-                <li>Healthcare Providers</li>
-                <li>E-commerce Businesses</li>
-                <li>Customer Support Teams</li>
-                <li>Financial Services</li>
-                <li>Small and Medium Enterprises</li>
-                <li>Government and Non-Profit Organizations</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
-            <p>Since its creation, XyronAI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🤝 Community Commitment</h2>
-            <p>We believe technology should empower people. Our goal is to create tools that help businesses, students, entrepreneurs, and organizations achieve more through automation and artificial intelligence.</p>
-        </section>
+        
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
@@ -757,57 +667,17 @@ BASE_TEMPLATE = """
                 <a href="{{ url_for('developer_page') }}" class="hover:text-green-600 mx-2">👨‍💻 Developer</a>
             </p>
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">⭐ Core Values</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Innovation and Continuous Improvement</li>
-                <li>Customer Satisfaction</li>
-                <li>Transparency and Trust</li>
-                <li>Privacy and Data Protection</li>
-                <li>Reliability and Performance</li>
-                <li>Accessibility for Everyone</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🚀 Why Choose XyronAI?</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Fast and intelligent responses</li>
-                <li>24/7 automated assistance</li>
-                <li>Secure and reliable platform</li>
-                <li>Easy integration with business systems</li>
-                <li>Continuous updates and improvements</li>
-                <li>Affordable solutions for businesses of all sizes</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🔒 Security & Privacy</h2>
-            <p>We are committed to protecting user data through secure technologies, responsible data handling, and continuous security improvements. Privacy and user trust remain at the center of everything we build.</p>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🌐 Industries We Serve</h2>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Schools and Educational Institutions</li>
-                <li>Healthcare Providers</li>
-                <li>E-commerce Businesses</li>
-                <li>Customer Support Teams</li>
-                <li>Financial Services</li>
-                <li>Small and Medium Enterprises</li>
-                <li>Government and Non-Profit Organizations</li>
-            </ul>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">📈 Our Growth Journey</h2>
-            <p>Since its creation, XyronAI has continued to evolve through user feedback, technological innovation, and a commitment to delivering smarter digital solutions.</p>
-        </section>
+        
 
-        <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🤝 Community Commitment</h2>
-            <p>We believe technology should empower people. Our goal is to create tools that help businesses, students, entrepreneurs, and organizations achieve more through automation and artificial intelligence.</p>
-        </section>
+        
 
         <section>
             <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
