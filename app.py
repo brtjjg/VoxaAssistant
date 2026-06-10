@@ -132,26 +132,8 @@ LEGAL_RULES_HTML = '''
         
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
-            <p>Email: <a href="mailto:support@smartdeskai.com" class="text-green-600">support@smartdeskai.com</a><br>
-            Website: <a href="https://www.smartdeskai.com" class="text-green-600">www.smartdeskai.com</a><br>
-            WhatsApp Support Available<br>
-            Business Hours: Monday – Sunday, 24/7 AI Assistance</p>
-        </section>
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
-            <p>As technology evolves, XyronAI will continue investing in:</p>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Advanced Artificial Intelligence</li>
-                <li>Voice Assistants</li>
-                <li>Smart Business Analytics</li>
-                <li>Multi-Platform Integration</li>
-                <li>Enhanced Automation Workflows</li>
-                <li>Global Accessibility</li>
-            </ul>
-            <p class="mt-2 italic">"Empowering communication, automating tasks, and helping businesses succeed through intelligent technology." 🚀</p>
-        </section>
 
             © 2026 XyronAI. All rights reserved.
         </div>
@@ -271,26 +253,8 @@ ABOUT_US_HTML = '''
         
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
-            <p>Email: <a href="mailto:support@smartdeskai.com" class="text-green-600">support@smartdeskai.com</a><br>
-            Website: <a href="https://www.smartdeskai.com" class="text-green-600">www.smartdeskai.com</a><br>
-            WhatsApp Support Available<br>
-            Business Hours: Monday – Sunday, 24/7 AI Assistance</p>
-        </section>
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
-            <p>As technology evolves, XyronAI will continue investing in:</p>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Advanced Artificial Intelligence</li>
-                <li>Voice Assistants</li>
-                <li>Smart Business Analytics</li>
-                <li>Multi-Platform Integration</li>
-                <li>Enhanced Automation Workflows</li>
-                <li>Global Accessibility</li>
-            </ul>
-            <p class="mt-2 italic">"Empowering communication, automating tasks, and helping businesses succeed through intelligent technology." 🚀</p>
-        </section>
 
             © 2026 XyronAI. All rights reserved.
         </div>
@@ -680,26 +644,8 @@ BASE_TEMPLATE = """
         
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">📞 Contact Us</h2>
-            <p>Email: <a href="mailto:support@smartdeskai.com" class="text-green-600">support@smartdeskai.com</a><br>
-            Website: <a href="https://www.smartdeskai.com" class="text-green-600">www.smartdeskai.com</a><br>
-            WhatsApp Support Available<br>
-            Business Hours: Monday – Sunday, 24/7 AI Assistance</p>
-        </section>
 
         <section>
-            <h2 class="text-2xl font-bold text-green-700 mb-3">🏆 Looking Ahead</h2>
-            <p>As technology evolves, XyronAI will continue investing in:</p>
-            <ul class="list-none pl-6 space-y-1">
-                <li>Advanced Artificial Intelligence</li>
-                <li>Voice Assistants</li>
-                <li>Smart Business Analytics</li>
-                <li>Multi-Platform Integration</li>
-                <li>Enhanced Automation Workflows</li>
-                <li>Global Accessibility</li>
-            </ul>
-            <p class="mt-2 italic">"Empowering communication, automating tasks, and helping businesses succeed through intelligent technology." 🚀</p>
-        </section>
 
             <p class="mt-2">© 2026 XyronAI. All rights reserved.</p>
         </footer>
